@@ -14,8 +14,16 @@ message RequestMessage {
 message ResponseMessage {
   string message = 1;
 }
+message WeatherRequest {
+  string city = 1;
+}
+
+message WeatherResponse {
+  string update = 1;
+}
 
 // Define the gRPC Service
 service MyService {
   rpc GetResponse(RequestMessage) returns (ResponseMessage);
+  rpc GetWeatherUpdates(WeatherRequest) returns (stream WeatherResponse);
 }

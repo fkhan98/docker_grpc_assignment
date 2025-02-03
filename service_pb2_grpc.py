@@ -40,6 +40,11 @@ class MyServiceStub(object):
                 request_serializer=service__pb2.RequestMessage.SerializeToString,
                 response_deserializer=service__pb2.ResponseMessage.FromString,
                 _registered_method=True)
+        self.GetWeatherUpdates = channel.unary_stream(
+                '/grpc_example.MyService/GetWeatherUpdates',
+                request_serializer=service__pb2.WeatherRequest.SerializeToString,
+                response_deserializer=service__pb2.WeatherResponse.FromString,
+                _registered_method=True)
 
 
 class MyServiceServicer(object):
@@ -52,6 +57,12 @@ class MyServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetWeatherUpdates(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MyServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -59,6 +70,11 @@ def add_MyServiceServicer_to_server(servicer, server):
                     servicer.GetResponse,
                     request_deserializer=service__pb2.RequestMessage.FromString,
                     response_serializer=service__pb2.ResponseMessage.SerializeToString,
+            ),
+            'GetWeatherUpdates': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetWeatherUpdates,
+                    request_deserializer=service__pb2.WeatherRequest.FromString,
+                    response_serializer=service__pb2.WeatherResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -89,6 +105,33 @@ class MyService(object):
             '/grpc_example.MyService/GetResponse',
             service__pb2.RequestMessage.SerializeToString,
             service__pb2.ResponseMessage.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetWeatherUpdates(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/grpc_example.MyService/GetWeatherUpdates',
+            service__pb2.WeatherRequest.SerializeToString,
+            service__pb2.WeatherResponse.FromString,
             options,
             channel_credentials,
             insecure,

@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\x12\x0cgrpc_example\"\x1e\n\x0eRequestMessage\x12\x0c\n\x04name\x18\x01 \x01(\t\"\"\n\x0fResponseMessage\x12\x0f\n\x07message\x18\x01 \x01(\t2W\n\tMyService\x12J\n\x0bGetResponse\x12\x1c.grpc_example.RequestMessage\x1a\x1d.grpc_example.ResponseMessageB \n\x10\x63om.example.grpcB\x0cServiceProtob\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rservice.proto\x12\x0cgrpc_example\"\x1e\n\x0eRequestMessage\x12\x0c\n\x04name\x18\x01 \x01(\t\"\"\n\x0fResponseMessage\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x1e\n\x0eWeatherRequest\x12\x0c\n\x04\x63ity\x18\x01 \x01(\t\"!\n\x0fWeatherResponse\x12\x0e\n\x06update\x18\x01 \x01(\t2\xab\x01\n\tMyService\x12J\n\x0bGetResponse\x12\x1c.grpc_example.RequestMessage\x1a\x1d.grpc_example.ResponseMessage\x12R\n\x11GetWeatherUpdates\x12\x1c.grpc_example.WeatherRequest\x1a\x1d.grpc_example.WeatherResponse0\x01\x42 \n\x10\x63om.example.grpcB\x0cServiceProtob\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,6 +36,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_REQUESTMESSAGE']._serialized_end=61
   _globals['_RESPONSEMESSAGE']._serialized_start=63
   _globals['_RESPONSEMESSAGE']._serialized_end=97
-  _globals['_MYSERVICE']._serialized_start=99
-  _globals['_MYSERVICE']._serialized_end=186
+  _globals['_WEATHERREQUEST']._serialized_start=99
+  _globals['_WEATHERREQUEST']._serialized_end=129
+  _globals['_WEATHERRESPONSE']._serialized_start=131
+  _globals['_WEATHERRESPONSE']._serialized_end=164
+  _globals['_MYSERVICE']._serialized_start=167
+  _globals['_MYSERVICE']._serialized_end=338
 # @@protoc_insertion_point(module_scope)
