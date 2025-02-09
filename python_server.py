@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from meteostat import Point, Daily
 from geopy.geocoders import Nominatim
 
-def get_avg_temp(lat, long):
+def get_avg_temp(lat, long, day):
     
     today = datetime.today()
 
@@ -18,7 +18,7 @@ def get_avg_temp(lat, long):
 
 
     # Get daily data for 2018
-    data = Daily(location, today- timedelta(days=2), today)
+    data = Daily(location, day- timedelta(days=1), day)
     data = data.fetch()
     return data.tavg
 
@@ -40,18 +40,19 @@ class MyServiceServicer(service_pb2_grpc.MyServiceServicer):
     def GetWeatherUpdates(self, request, context):
        
         lat,long = get_lat_long(request.city)
-        tavg = get_avg_temp(lat,long)
+        today = datetime.today() 
+        for i in range(3):
+            tavg = get_avg_temp(lat,long, today-timedelta(days=i))
        
-
-        weather_response = (
-            f"Latitude and Longitude for {request.city} is {lat},{long} "
-            f"and Average temperature is {tavg}"
-        )
+            
+            weather_response = (
+                f"Latitude and Longitude for {request.city} is {lat},{long} "
+                f"and Average temperature for {tavg.index[0].date()} is {tavg.iloc[0]}"
+            )
         
-        # weather_reponse = f"Lattitude and Longitude for  {request.city} is {lat_str},{long_str} and Average temperature is {tavg_str}"
-        
-        
-        yield service_pb2.WeatherResponse(update=weather_response)
+            
+            yield service_pb2.WeatherResponse(update=weather_response)
+            time.sleep(1)
         
     
 
