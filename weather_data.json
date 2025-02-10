@@ -1,17 +1,19 @@
 {
-    "2025-02-09": {
-        "latitude": 32.7355816,
-        "longitude": -97.1071186,
-        "avg_temperature": 10.2
-    },
-    "2025-02-08": {
-        "latitude": 32.7355816,
-        "longitude": -97.1071186,
-        "avg_temperature": 21.2
-    },
-    "2025-02-07": {
-        "latitude": 32.7355816,
-        "longitude": -97.1071186,
-        "avg_temperature": 17.1
+    "Arlington, Texas": {
+        "2025-02-09": {
+            "latitude": 32.7355816,
+            "longitude": -97.1071186,
+            "avg_temperature": 10.2
+        },
+        "2025-02-08": {
+            "latitude": 32.7355816,
+            "longitude": -97.1071186,
+            "avg_temperature": 21.2
+        },
+        "2025-02-07": {
+            "latitude": 32.7355816,
+            "longitude": -97.1071186,
+            "avg_temperature": 17.1
+        }
     }
 }

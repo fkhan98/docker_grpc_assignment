@@ -1,11 +1,15 @@
 ## Generating Language-Specific Code from .proto
 
+-- for python -- (.proto -> backbone)
 python -m grpc_tools.protoc -I=proto --python_out=. --grpc_python_out=. proto/service.proto
 
-protoc --java_out=src/main/java --grpc-java_out=src/main/java --plugin=protoc-gen-grpc-java=$(which protoc-gen-grpc-java) --proto_path=proto/service.proto
+-- for Java gradlew -- (.proto -> backbone)
 
-protoc --java_out=src/main/java \
-       --grpc-java_out=src/main/java \
-       --plugin=protoc-gen-grpc-java=$(which protoc-gen-grpc-java) \
-       --proto_path=proto \
-       proto/service.proto
+1. put build.gradle in root and define dependencies 
+2. keep .proto file in "./src/main/proto"
+3. run "./gradlew clean build" to generate backbone code from .proto file 
+4. backbone code in A) ./build/generated/source/proto/main/grpc/com/example/grpc/MyServiceGrpc.java and B) ./build/generated/source/proto/main/java/com/example/grpc/ServiceProto.java
+4. run "./gradlew run" to run the Java server 
+
+-- run java client -- 
+./gradlew run -PmainClass=com.example.grpc.JavaClient

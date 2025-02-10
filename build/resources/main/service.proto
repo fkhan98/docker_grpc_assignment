@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package grpc_example;
+
+option java_package = "com.example.grpc";
+option java_outer_classname = "ServiceProto";
+
+// Define the request message
+message RequestMessage {
+  string name = 1;
+}
+
+// Define the response message
+message ResponseMessage {
+  string message = 1;
+}
+message WeatherRequest {
+  string city = 1;
+}
+
+message WeatherResponse {
+  string update = 1;
+}
+
+// Define the gRPC Service
+service MyService {
+  rpc GetResponse(RequestMessage) returns (ResponseMessage);
+  rpc GetWeatherUpdates(WeatherRequest) returns (stream WeatherResponse);
+}

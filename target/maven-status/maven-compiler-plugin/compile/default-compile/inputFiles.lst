@@ -1,4 +1,7 @@
 /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment/src/main/java/com/example/grpc/JavaServer.java
 /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment/src/main/java/com/example/grpc/ServiceProto.java
+/Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment/target/generated-sources/protobuf/grpc-java/com/example/grpc/MyServiceGrpc.java
 /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment/src/main/java/com/example/grpc/MyServiceGrpc.java
 /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment/src/main/java/com/example/grpc/JavaClient.java
+/Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment/src/main/java/com/example/grpc/WeatherEntry.java
+/Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment/target/generated-sources/protobuf/java/com/example/grpc/ServiceProto.java
