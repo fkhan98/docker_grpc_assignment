@@ -3,7 +3,7 @@ import service_pb2
 import service_pb2_grpc
 
 def run():
-    channel = grpc.insecure_channel("localhost:50052")
+    channel = grpc.insecure_channel("python_server:50051")
     stub = service_pb2_grpc.MyServiceStub(channel)
     request1 = service_pb2.RequestMessage(name="Python Client")
     response1 = stub.GetResponse(request1)

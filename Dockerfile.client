@@ -1,0 +1,17 @@
+# Use base image
+FROM python:3.9
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the client code into the container
+COPY python_client.py service_pb2.py service_pb2_grpc.py ./
+
+# Run the gRPC client
+CMD ["python", "python_client.py"]

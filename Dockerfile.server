@@ -1,0 +1,20 @@
+# Use base image
+FROM python:3.9
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the server code into the container
+COPY python_server.py service_pb2.py service_pb2_grpc.py ./
+
+# Expose gRPC server port
+EXPOSE 50051
+
+# Run the gRPC server
+CMD ["python", "python_server.py"]
