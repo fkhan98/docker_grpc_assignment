@@ -15,6 +15,8 @@ def run():
     
     responses = stub.GetWeatherUpdates(request2)
     
+    #Synchronous (Blocking Call)
+    #CLients waits till getting all reponses and then prints all the response
     for response2 in responses:
         print(f"Weather update: {response2.update}")
     # print("Python Client received weather updates:", response2.update)
