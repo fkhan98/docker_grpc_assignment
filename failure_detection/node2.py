@@ -9,10 +9,10 @@ import threading
 stop_event = threading.Event()
 
 class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer):
-    def __init__(self, node_id):
+    def __init__(self, node_id,membership_list):
         self.node_id = node_id
-        # self.membership_list = membership_list  # List of other nodes
-        # self.last_heard_from = {node: time.time() for node in membership_list}
+        self.membership_list = membership_list  # List of other nodes
+        self.last_heard_from = {}
         
     def Ping(self, request, context):
         print(f"Component FailureDetector of Node {self.node_id} runs RPC Ping called by Component FailureDetector of Node {request.sender_id}")
@@ -73,17 +73,14 @@ def serve(port,node_id):
     server.add_insecure_port(f'[::]:{port}')
     server.start()
     print(f"Server started at port {port} (Node {node_id})")
+    membership_list = [50051,50053,50054,50055]
+    
+    failure_detection = FailureDetectorServicer(node_id = 50052,membership_list=membership_list)
+    failure_detection.monitor_nodes()
+
     server.wait_for_termination()
 
 if __name__ == "__main__":
-    nodes = [(50051, "1"), (50052, "2"), (50053, "3")]
-    threads = []
-    for port, node_id in nodes:
-        t = threading.Thread(target=serve, args=(port,node_id))
-        t.start()
-        threads.append(t)
-        try:
-            stop_event.wait()  # Keep the main thread running indefinitely
-        except KeyboardInterrupt:
-            print("Shutting down servers...")
-            stop_event.set()
+    serve(50052,2)
+  
+        
