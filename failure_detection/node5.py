@@ -1,4 +1,5 @@
 from concurrent import futures
+import json
 import grpc
 import failure_detection_pb2
 import failure_detection_pb2_grpc
@@ -29,10 +30,8 @@ class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer
             return failure_detection_pb2.IndirectPingAck(target_id = request.target_id, ack=False)
         
     def monitor_nodes(self):
+        time.sleep(30)
         while True:
-            # if not self.membership_list:
-            #     time.sleep(5)
-            #     continue
 
             target = random.choice(self.membership_list)
             print(f"Component FailureDetector of Node {self.node_id} sends RPC Ping to Component FailureDetector of Node {target}")
@@ -43,6 +42,8 @@ class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer
                     response = stub.Ping(failure_detection_pb2.PingRequest(sender_id=self.node_id),timeout=5)
                     if response.ack:
                         self.last_heard_from[target] = time.time()
+                        with open(f"{self.node_id}_last_heard_from.json", "w") as f:
+                            json.dump(self.last_heard_from, f, indent=4)
                         # time.sleep(T_PRIME)
                         continue
             except grpc.RpcError:
@@ -59,6 +60,8 @@ class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer
                         response = stub.IndirectPing(failure_detection_pb2.IndirectPingRequest(sender_id=self.node_id, target_id=target), timeout=5)
                         if response.ack:
                             self.last_heard_from[target] = time.time()
+                            with open(f"{self.node_id}_last_heard_from.json", "w") as f:
+                                json.dump(self.last_heard_from, f, indent=4)
                             break
                 except grpc.RpcError:
                     pass
@@ -69,17 +72,18 @@ class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer
 
 def serve(port,node_id):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    failure_detection_pb2_grpc.add_FailureDetectorServicer_to_server(FailureDetectorServicer(), server)
+    membership_list = ["50052","50053","50054","50051"]
+    
+    failure_detection_pb2_grpc.add_FailureDetectorServicer_to_server(FailureDetectorServicer(node_id = port, membership_list=membership_list), server)
     server.add_insecure_port(f'[::]:{port}')
     server.start()
     print(f"Server started at port {port} (Node {node_id})")
-    membership_list = [50052,50053,50054,50051]
     
-    failure_detection = FailureDetectorServicer(node_id = 50055,membership_list=membership_list)
+    failure_detection = FailureDetectorServicer(node_id = port,membership_list=membership_list)
     failure_detection.monitor_nodes()
 
     server.wait_for_termination()
 
 if __name__ == "__main__":
-    serve(50055,5)
+    serve("50055",5)
         
