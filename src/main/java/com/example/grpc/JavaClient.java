@@ -6,30 +6,53 @@ import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import java.util.concurrent.TimeUnit;
 import java.util.Iterator;
+import java.util.Optional;
 
 public class JavaClient {
 
     public static void main(String[] args) {
-        // Create a channel to communicate with the server
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
-                .usePlaintext() // No TLS (for development)
+        String javaServerHost = Optional.ofNullable(System.getenv("JAVA_GRPC_SERVER_HOST"))
+                .orElse("localhost")
+                .trim();  
+
+        System.out.println("Connecting to Java gRPC Server at: [" + javaServerHost + "] on port 50052");
+
+
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(javaServerHost, 50052)
+                .usePlaintext()  // No TLS (plaintext communication)
                 .build();
 
-        // Create a stub (client)
-        // MyServiceGrpc.MyServiceBlockingStub stub = MyServiceGrpc.newBlockingStub(channel);
+        // Create stubs
+        MyServiceGrpc.MyServiceBlockingStub stub = MyServiceGrpc.newBlockingStub(channel);
         MyServiceGrpc.MyServiceStub asyncStub = MyServiceGrpc.newStub(channel);
 
-        // callGetResponse(stub);
-
-        // callGetWeatherUpdatesBlocking(stub, "Arlington, Texas");
-
+        callGetResponse(stub);
         callGetWeatherUpdatesNonBlocking(asyncStub, "Arlington, Texas");
 
+        System.out.println("---------------------------------------------------------------");
+
+        String pythonServerHost = Optional.ofNullable(System.getenv("PYTHON_GRPC_SERVER_HOST"))
+                .orElse("localhost")
+                .trim();
+
+        System.out.println("Connecting to Python gRPC Server at: [" + pythonServerHost + "] on port 50051");
+
+        ManagedChannel python_channel = ManagedChannelBuilder.forAddress(pythonServerHost, 50051)
+                .usePlaintext()  // No TLS (plaintext communication)
+                .build();  
+
+        MyServiceGrpc.MyServiceBlockingStub pythonStub = MyServiceGrpc.newBlockingStub(python_channel);
+        MyServiceGrpc.MyServiceStub pythonAsyncStub = MyServiceGrpc.newStub(python_channel);
+
+        callGetResponse(pythonStub);
+        // callGetWeatherUpdatesNonBlocking(pythonAsyncStub, "Arlington, Texas");
+        callGetWeatherUpdatesBlocking(pythonStub, "Arlington, Texas");
+
         try {
-            channel.awaitTermination(10, java.util.concurrent.TimeUnit.SECONDS);
+            channel.shutdown().awaitTermination(10, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
-            System.err.println("Client interrupted while waiting for responses.");
-            Thread.currentThread().interrupt(); // Restore interrupted state
+            // logger.severe("Channel shutdown was interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt(); // Restore the interrupted status
         }
     }
 

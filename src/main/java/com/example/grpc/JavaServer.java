@@ -44,7 +44,7 @@ public class JavaServer {
             System.out.println("Received weather updates request for city: " + city);
 
             // Path to the local JSON file
-            File file = new File("./weather_data.json");
+            File file = new File("weather_data.json");
 
             try {
                 // Use Jackson to read the JSON as a nested map: Map<City, Map<Date, WeatherEntry>>

@@ -1,24 +1,76 @@
+# version: '3.8'
+
+# services:
+#   python_server:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.server
+#     container_name: python_grpc_server
+#     ports:
+#       - "50051:50051"
+
+
+#   python_client:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.client
+#     container_name: python_grpc_client
+#     depends_on:
+#       - python_server
+#     environment:
+#       - GRPC_SERVER_HOST=python_server
+
+#     # Delay startup until the server is ready
+#     entrypoint: ["sh", "-c", "sleep 20 && python python_client.py"]
+
 version: '3.8'
 
 services:
-  python_server:
+  # Python gRPC Server
+  python-server:
     build:
       context: .
-      dockerfile: Dockerfile.server
+      dockerfile: Dockerfile.python_server
     container_name: python_grpc_server
     ports:
       - "50051:50051"
 
-
-  python_client:
+  # Java gRPC Server
+  java-server:
     build:
       context: .
-      dockerfile: Dockerfile.client
+      dockerfile: Dockerfile.java_server
+    container_name: java_grpc_server
+    ports:
+      - "50052:50052"
+    volumes:
+      - ./weather_data.json:/app/weather_data.json
+
+
+  # Python gRPC Client
+  python-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.python_client
     container_name: python_grpc_client
     depends_on:
-      - python_server
+      - python-server
     environment:
-      - GRPC_SERVER_HOST=python_server
+      - PYTHON_GRPC_SERVER_HOST=python-server
 
     # Delay startup until the server is ready
     entrypoint: ["sh", "-c", "sleep 20 && python python_client.py"]
+
+  # Java gRPC Client
+  java-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.java_client
+    container_name: java_grpc_client
+    depends_on:
+      - java-server
+    environment:
+      JAVA_GRPC_SERVER_HOST: "java-server"
+      PYTHON_GRPC_SERVER_HOST: "python-server"
+    restart: on-failure  # Restart client if it fails
+    entrypoint: ["sh", "-c", "sleep 20 && ./gradlew run -PmainClass=com.example.grpc.JavaClient"]

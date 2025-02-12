@@ -1,0 +1,20 @@
+# Use OpenJDK slim Debian-based image
+FROM openjdk:17-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Install required utilities (xargs)
+RUN apt-get update && apt-get install -y findutils
+
+# Copy the entire project
+COPY . .
+
+# Grant execute permission to Gradle wrapper
+RUN chmod +x gradlew
+
+# Build the project
+RUN ./gradlew clean build
+
+# Wait for the server to start before running the client
+CMD ["sh", "-c", "sleep 20 && ./gradlew run -PmainClass=com.example.grpc.JavaClient"]

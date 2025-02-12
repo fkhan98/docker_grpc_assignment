@@ -1,0 +1,26 @@
+# Use OpenJDK slim Debian-based image
+FROM openjdk:17-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Install required utilities (net-tools, findutils)
+RUN apt-get update && apt-get install -y net-tools findutils
+
+# Copy the entire project
+COPY . .
+
+# Copy the weather_data.json file into the container
+COPY weather_data.json /app/weather_data.json
+
+# Grant execute permission to Gradle wrapper
+RUN chmod +x gradlew
+
+# Build the project
+RUN ./gradlew clean build
+
+# Expose gRPC server port
+EXPOSE 50052
+
+# Start the Java gRPC server
+CMD ["./gradlew", "run"]
