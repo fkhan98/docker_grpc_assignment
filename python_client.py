@@ -1,6 +1,7 @@
 import grpc
 import service_pb2
 import service_pb2_grpc
+import time
 
 def run():
     channel = grpc.insecure_channel("python_server:50051")
