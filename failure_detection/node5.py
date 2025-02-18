@@ -6,8 +6,11 @@ import failure_detection_pb2_grpc
 import time
 import random
 import threading
+import os
 
 stop_event = threading.Event()
+DATA_DIR = "./data"
+os.makedirs(DATA_DIR, exist_ok=True)
 
 class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer):
     def __init__(self, node_id,membership_list):
@@ -22,7 +25,7 @@ class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer
     def IndirectPing(self, request, context):
         print(f"Component FailureDetector of Node {self.node_id} runs RPC IndirectPing to Node {request.target_id} called by Component FailureDetector of Node {request.sender_id}")
         try:
-            with grpc.insecure_channel(f'localhost:{request.target_id}') as channel:
+            with grpc.insecure_channel(f'node{request.target_id[-1]}:{request.target_id}') as channel:
                 stub = failure_detection_pb2_grpc.FailureDetectorStub(channel)
                 response = stub.Ping(failure_detection_pb2.PingRequest(node_id=self.node_id))
                 return failure_detection_pb2.IndirectPingAck(target_id = request.target_id, ack=response.ack)
@@ -37,12 +40,13 @@ class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer
             print(f"Component FailureDetector of Node {self.node_id} sends RPC Ping to Component FailureDetector of Node {target}")
 
             try:
-                with grpc.insecure_channel(f'localhost:{target}') as channel:
+                with grpc.insecure_channel(f'node{target[-1]}:{target}') as channel:
                     stub = failure_detection_pb2_grpc.FailureDetectorStub(channel)
                     response = stub.Ping(failure_detection_pb2.PingRequest(sender_id=self.node_id),timeout=5)
                     if response.ack:
                         self.last_heard_from[target] = time.time()
-                        with open(f"{self.node_id}_last_heard_from.json", "w") as f:
+                        json_path = os.path.join(DATA_DIR, f"{self.node_id}_last_heard_from.json")
+                        with open(json_path, "w") as f:
                             json.dump(self.last_heard_from, f, indent=4)
                         # time.sleep(T_PRIME)
                         continue
@@ -55,12 +59,13 @@ class FailureDetectorServicer(failure_detection_pb2_grpc.FailureDetectorServicer
             for node in selected_nodes:
                 print(f"Component FailureDetector of Node {self.node_id} sends RPC IndirectPing to Component FailureDetector of Node {node}")
                 try:
-                    with grpc.insecure_channel(f'localhost:{node}') as channel:
+                    with grpc.insecure_channel(f'node{node[-1]}:{node}') as channel:
                         stub = failure_detection_pb2_grpc.FailureDetectorStub(channel)
                         response = stub.IndirectPing(failure_detection_pb2.IndirectPingRequest(sender_id=self.node_id, target_id=target), timeout=5)
                         if response.ack:
                             self.last_heard_from[target] = time.time()
-                            with open(f"{self.node_id}_last_heard_from.json", "w") as f:
+                            json_path = os.path.join(DATA_DIR, f"{self.node_id}_last_heard_from.json")
+                            with open(json_path, "w") as f:
                                 json.dump(self.last_heard_from, f, indent=4)
                             break
                 except grpc.RpcError:
