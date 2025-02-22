@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'com.google.protobuf' version '0.9.4'
+    id 'application'
+}
+
+group 'com.example'
+version '1.0.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+// Define versions for consistency
+def grpcVersion = '1.57.2'
+def protobufVersion = '3.23.4'
+
+dependencies {
+    // Core gRPC Dependencies
+    // Use non-shaded netty artifact for simpler imports:
+    implementation "io.grpc:grpc-netty:$grpcVersion"
+    implementation "io.grpc:grpc-stub:$grpcVersion"
+    implementation "io.grpc:grpc-protobuf:$grpcVersion"
+    implementation "com.google.protobuf:protobuf-java:$protobufVersion"
+    
+    // Fix javax.annotation.Generated issue for Java 9+
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protobufVersion"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion"
+        }
+    }
+    generateProtoTasks {
+        all().configureEach { task ->
+            // Generate Java classes for .proto messages
+            task.builtins {
+                java {}
+            }
+            // Generate gRPC service interfaces (DisseminationGrpc, etc.)
+            task.plugins {
+                grpc {}
+            }
+        }
+    }
+}
+
+// Set main class for the 'application' plugin
+application {
+    mainClass = "swim.DisseminationServer"
+}
+
+// Ensure UTF-8 Encoding
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+// Ensure gRPC-generated code is compiled before Java code
+tasks.named("compileJava").configure {
+    dependsOn tasks.named("generateProto")
+}

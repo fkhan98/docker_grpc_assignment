@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "swim";
+
+package swim;
+
+// Failure Detector Service
+service FailureDetector {
+  rpc Ping (PingRequest) returns (PingAck);
+  rpc IndirectPing (IndirectPingRequest) returns (IndirectPingAck);
+}
+
+// Dissemination Service
+service Dissemination {
+  rpc NotifyFailure (NotifyFailureRequest) returns (NotifyFailureAck);
+  rpc Join (JoinRequest) returns (JoinResponse);
+}
+
+// --- Failure Detector Messages ---
+message PingRequest {
+  string sender_id = 1;
+}
+
+message PingAck {
+  bool ack = 1;
+}
+
+message IndirectPingRequest {
+  string sender_id = 1;
+  string target_id = 2;
+}
+
+message IndirectPingAck {
+  string target_id = 1;
+  bool ack = 2;
+}
+
+// --- Dissemination Messages ---
+message NotifyFailureRequest {
+  string sender_id = 1;
+  string failed_node_id = 2;
+}
+
+message NotifyFailureAck {
+  bool ack = 1;
+}
+
+message JoinRequest {
+  string new_node_id = 1;
+}
+
+message JoinResponse {
+  repeated string membership_list = 1;
+}
