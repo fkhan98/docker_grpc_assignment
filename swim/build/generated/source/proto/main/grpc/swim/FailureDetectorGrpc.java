@@ -111,6 +111,37 @@ public final class FailureDetectorGrpc {
     return getRemoveFailedNodeMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<swim.NewNodeJoinRequest,
+      swim.NewNodeJoinAck> getJoinNewNodeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "JoinNewNode",
+      requestType = swim.NewNodeJoinRequest.class,
+      responseType = swim.NewNodeJoinAck.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<swim.NewNodeJoinRequest,
+      swim.NewNodeJoinAck> getJoinNewNodeMethod() {
+    io.grpc.MethodDescriptor<swim.NewNodeJoinRequest, swim.NewNodeJoinAck> getJoinNewNodeMethod;
+    if ((getJoinNewNodeMethod = FailureDetectorGrpc.getJoinNewNodeMethod) == null) {
+      synchronized (FailureDetectorGrpc.class) {
+        if ((getJoinNewNodeMethod = FailureDetectorGrpc.getJoinNewNodeMethod) == null) {
+          FailureDetectorGrpc.getJoinNewNodeMethod = getJoinNewNodeMethod =
+              io.grpc.MethodDescriptor.<swim.NewNodeJoinRequest, swim.NewNodeJoinAck>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "JoinNewNode"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  swim.NewNodeJoinRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  swim.NewNodeJoinAck.getDefaultInstance()))
+              .setSchemaDescriptor(new FailureDetectorMethodDescriptorSupplier("JoinNewNode"))
+              .build();
+        }
+      }
+    }
+    return getJoinNewNodeMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -182,6 +213,13 @@ public final class FailureDetectorGrpc {
         io.grpc.stub.StreamObserver<swim.FailedNodeRemovedAck> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRemoveFailedNodeMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void joinNewNode(swim.NewNodeJoinRequest request,
+        io.grpc.stub.StreamObserver<swim.NewNodeJoinAck> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getJoinNewNodeMethod(), responseObserver);
+    }
   }
 
   /**
@@ -240,6 +278,14 @@ public final class FailureDetectorGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRemoveFailedNodeMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void joinNewNode(swim.NewNodeJoinRequest request,
+        io.grpc.stub.StreamObserver<swim.NewNodeJoinAck> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getJoinNewNodeMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -280,6 +326,13 @@ public final class FailureDetectorGrpc {
     public swim.FailedNodeRemovedAck removeFailedNode(swim.FailedNodeRemovalRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRemoveFailedNodeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public swim.NewNodeJoinAck joinNewNode(swim.NewNodeJoinRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getJoinNewNodeMethod(), getCallOptions(), request);
     }
   }
 
@@ -325,11 +378,20 @@ public final class FailureDetectorGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getRemoveFailedNodeMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<swim.NewNodeJoinAck> joinNewNode(
+        swim.NewNodeJoinRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getJoinNewNodeMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PING = 0;
   private static final int METHODID_INDIRECT_PING = 1;
   private static final int METHODID_REMOVE_FAILED_NODE = 2;
+  private static final int METHODID_JOIN_NEW_NODE = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -359,6 +421,10 @@ public final class FailureDetectorGrpc {
         case METHODID_REMOVE_FAILED_NODE:
           serviceImpl.removeFailedNode((swim.FailedNodeRemovalRequest) request,
               (io.grpc.stub.StreamObserver<swim.FailedNodeRemovedAck>) responseObserver);
+          break;
+        case METHODID_JOIN_NEW_NODE:
+          serviceImpl.joinNewNode((swim.NewNodeJoinRequest) request,
+              (io.grpc.stub.StreamObserver<swim.NewNodeJoinAck>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -399,6 +465,13 @@ public final class FailureDetectorGrpc {
               swim.FailedNodeRemovalRequest,
               swim.FailedNodeRemovedAck>(
                 service, METHODID_REMOVE_FAILED_NODE)))
+        .addMethod(
+          getJoinNewNodeMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              swim.NewNodeJoinRequest,
+              swim.NewNodeJoinAck>(
+                service, METHODID_JOIN_NEW_NODE)))
         .build();
   }
 
@@ -450,6 +523,7 @@ public final class FailureDetectorGrpc {
               .addMethod(getPingMethod())
               .addMethod(getIndirectPingMethod())
               .addMethod(getRemoveFailedNodeMethod())
+              .addMethod(getJoinNewNodeMethod())
               .build();
         }
       }

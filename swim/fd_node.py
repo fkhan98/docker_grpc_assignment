@@ -49,6 +49,18 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
             print(f"Component FailureDetector of Node {self.node_id} received NotifyFailure for {failed_node_id}, but it was not found in the membership list.")
 
         return swim_pb2.FailedNodeRemovedAck(ack=True)
+    
+    def JoinNewNode(self, request, context):
+        new_node_id = request.new_node_id
+
+        if new_node_id not in self.membership_list:
+            self.membership_list.append(new_node_id)
+            print(f"Component FailureDetector of Node {self.node_id} added new Node {new_node_id} to membership list.")
+        else:
+            print(f"Component FailureDetector of Node {self.node_id} received New Node Join notification for {new_node_id}, but it was already found in the membership list.")
+
+        return swim_pb2.NewNodeJoinAck(ack=True)
+        
 
     def monitor_nodes(self):
         """Continuously monitor other nodes in the membership list."""

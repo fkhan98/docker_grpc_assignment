@@ -50,6 +50,11 @@ class FailureDetectorStub(object):
                 request_serializer=swim__pb2.FailedNodeRemovalRequest.SerializeToString,
                 response_deserializer=swim__pb2.FailedNodeRemovedAck.FromString,
                 _registered_method=True)
+        self.JoinNewNode = channel.unary_unary(
+                '/swim.FailureDetector/JoinNewNode',
+                request_serializer=swim__pb2.NewNodeJoinRequest.SerializeToString,
+                response_deserializer=swim__pb2.NewNodeJoinAck.FromString,
+                _registered_method=True)
 
 
 class FailureDetectorServicer(object):
@@ -74,6 +79,12 @@ class FailureDetectorServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def JoinNewNode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FailureDetectorServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -91,6 +102,11 @@ def add_FailureDetectorServicer_to_server(servicer, server):
                     servicer.RemoveFailedNode,
                     request_deserializer=swim__pb2.FailedNodeRemovalRequest.FromString,
                     response_serializer=swim__pb2.FailedNodeRemovedAck.SerializeToString,
+            ),
+            'JoinNewNode': grpc.unary_unary_rpc_method_handler(
+                    servicer.JoinNewNode,
+                    request_deserializer=swim__pb2.NewNodeJoinRequest.FromString,
+                    response_serializer=swim__pb2.NewNodeJoinAck.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -175,6 +191,33 @@ class FailureDetector(object):
             '/swim.FailureDetector/RemoveFailedNode',
             swim__pb2.FailedNodeRemovalRequest.SerializeToString,
             swim__pb2.FailedNodeRemovedAck.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def JoinNewNode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/swim.FailureDetector/JoinNewNode',
+            swim__pb2.NewNodeJoinRequest.SerializeToString,
+            swim__pb2.NewNodeJoinAck.FromString,
             options,
             channel_credentials,
             insecure,

@@ -10,6 +10,7 @@ service FailureDetector {
   rpc Ping (PingRequest) returns (PingAck);
   rpc IndirectPing (IndirectPingRequest) returns (IndirectPingAck);
   rpc RemoveFailedNode (FailedNodeRemovalRequest) returns (FailedNodeRemovedAck);
+  rpc JoinNewNode (NewNodeJoinRequest) returns (NewNodeJoinAck);
 }
 
 // Dissemination Service
@@ -43,6 +44,15 @@ message FailedNodeRemovalRequest{
 }
 
 message FailedNodeRemovedAck{
+  bool ack = 1;
+}
+
+message NewNodeJoinRequest{
+  string sender_id =1;
+  string new_node_id=2;
+}
+
+message NewNodeJoinAck{
   bool ack = 1;
 }
 

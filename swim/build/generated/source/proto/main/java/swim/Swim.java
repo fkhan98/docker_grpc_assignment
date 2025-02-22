@@ -45,6 +45,16 @@ public final class Swim {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_swim_FailedNodeRemovedAck_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_swim_NewNodeJoinRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_swim_NewNodeJoinRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_swim_NewNodeJoinAck_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_swim_NewNodeJoinAck_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_swim_NotifyFailureRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -80,20 +90,24 @@ public final class Swim {
       "target_id\030\001 \001(\t\022\013\n\003ack\030\002 \001(\010\"E\n\030FailedNo" +
       "deRemovalRequest\022\021\n\tsender_id\030\001 \001(\t\022\026\n\016f" +
       "ailed_node_id\030\002 \001(\t\"#\n\024FailedNodeRemoved" +
-      "Ack\022\013\n\003ack\030\001 \001(\010\"A\n\024NotifyFailureRequest" +
-      "\022\021\n\tsender_id\030\001 \001(\t\022\026\n\016failed_node_id\030\002 " +
-      "\001(\t\"\037\n\020NotifyFailureAck\022\013\n\003ack\030\001 \001(\010\"\"\n\013" +
-      "JoinRequest\022\023\n\013new_node_id\030\001 \001(\t\"\'\n\014Join" +
-      "Response\022\027\n\017membership_list\030\001 \003(\t2\315\001\n\017Fa" +
-      "ilureDetector\022(\n\004Ping\022\021.swim.PingRequest" +
-      "\032\r.swim.PingAck\022@\n\014IndirectPing\022\031.swim.I" +
-      "ndirectPingRequest\032\025.swim.IndirectPingAc" +
-      "k\022N\n\020RemoveFailedNode\022\036.swim.FailedNodeR" +
-      "emovalRequest\032\032.swim.FailedNodeRemovedAc" +
-      "k2\203\001\n\rDissemination\022C\n\rNotifyFailure\022\032.s" +
-      "wim.NotifyFailureRequest\032\026.swim.NotifyFa" +
-      "ilureAck\022-\n\004Join\022\021.swim.JoinRequest\032\022.sw" +
-      "im.JoinResponseB\010\n\004swimP\001b\006proto3"
+      "Ack\022\013\n\003ack\030\001 \001(\010\"<\n\022NewNodeJoinRequest\022\021" +
+      "\n\tsender_id\030\001 \001(\t\022\023\n\013new_node_id\030\002 \001(\t\"\035" +
+      "\n\016NewNodeJoinAck\022\013\n\003ack\030\001 \001(\010\"A\n\024NotifyF" +
+      "ailureRequest\022\021\n\tsender_id\030\001 \001(\t\022\026\n\016fail" +
+      "ed_node_id\030\002 \001(\t\"\037\n\020NotifyFailureAck\022\013\n\003" +
+      "ack\030\001 \001(\010\"\"\n\013JoinRequest\022\023\n\013new_node_id\030" +
+      "\001 \001(\t\"\'\n\014JoinResponse\022\027\n\017membership_list" +
+      "\030\001 \003(\t2\214\002\n\017FailureDetector\022(\n\004Ping\022\021.swi" +
+      "m.PingRequest\032\r.swim.PingAck\022@\n\014Indirect" +
+      "Ping\022\031.swim.IndirectPingRequest\032\025.swim.I" +
+      "ndirectPingAck\022N\n\020RemoveFailedNode\022\036.swi" +
+      "m.FailedNodeRemovalRequest\032\032.swim.Failed" +
+      "NodeRemovedAck\022=\n\013JoinNewNode\022\030.swim.New" +
+      "NodeJoinRequest\032\024.swim.NewNodeJoinAck2\203\001" +
+      "\n\rDissemination\022C\n\rNotifyFailure\022\032.swim." +
+      "NotifyFailureRequest\032\026.swim.NotifyFailur" +
+      "eAck\022-\n\004Join\022\021.swim.JoinRequest\032\022.swim.J" +
+      "oinResponseB\010\n\004swimP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -135,26 +149,38 @@ public final class Swim {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_swim_FailedNodeRemovedAck_descriptor,
         new java.lang.String[] { "Ack", });
-    internal_static_swim_NotifyFailureRequest_descriptor =
+    internal_static_swim_NewNodeJoinRequest_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_swim_NewNodeJoinRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_swim_NewNodeJoinRequest_descriptor,
+        new java.lang.String[] { "SenderId", "NewNodeId", });
+    internal_static_swim_NewNodeJoinAck_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_swim_NewNodeJoinAck_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_swim_NewNodeJoinAck_descriptor,
+        new java.lang.String[] { "Ack", });
+    internal_static_swim_NotifyFailureRequest_descriptor =
+      getDescriptor().getMessageTypes().get(8);
     internal_static_swim_NotifyFailureRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_swim_NotifyFailureRequest_descriptor,
         new java.lang.String[] { "SenderId", "FailedNodeId", });
     internal_static_swim_NotifyFailureAck_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_swim_NotifyFailureAck_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_swim_NotifyFailureAck_descriptor,
         new java.lang.String[] { "Ack", });
     internal_static_swim_JoinRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_swim_JoinRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_swim_JoinRequest_descriptor,
         new java.lang.String[] { "NewNodeId", });
     internal_static_swim_JoinResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_swim_JoinResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_swim_JoinResponse_descriptor,

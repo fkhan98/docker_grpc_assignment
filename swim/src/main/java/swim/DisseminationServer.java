@@ -90,13 +90,96 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
             membershipList.add(newNodeId);
         }
 
-        // Return updated membership list
+        notifyFdJoin(newNodeId);
+
+        // Notify other nodes about failure
+        // (Any node receiving it for the first time will also remove from membership,
+        //  then do a single re-broadcast, etc.)
+        multicastJoin(newNodeId);
+
         JoinResponse response = JoinResponse.newBuilder()
                 .addAllMembershipList(membershipList)
                 .build();
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+    }
+
+    private void notifyFdJoin(String newNodeId) {
+        try {
+            // Convert Dissemination ID (600XX) → FD ID (500XX)
+            // int failureDetectorPort = Integer.parseInt(failedNodeId) - 10000;
+            int newNode = Integer.parseInt(newNodeId) - 10000;
+            int selfFdNodeId = Integer.parseInt(nodeId) - 10000;
+            String selfFdNodeIdStr = Integer.toString(selfFdNodeId);
+            String newNodeStr = Integer.toString(newNode);
+
+
+
+
+            System.out.println("Component Dissemination of Node " + nodeId +
+                    " sending NotifyFailure RPC to Failure Detector at " + selfFdNodeIdStr);
+
+            ManagedChannel channel = ManagedChannelBuilder
+                    .forAddress("localhost", selfFdNodeId)
+                    .usePlaintext()
+                    .build();
+
+
+
+            FailureDetectorGrpc.FailureDetectorBlockingStub stub = FailureDetectorGrpc.newBlockingStub(channel);
+
+            NewNodeJoinRequest request = NewNodeJoinRequest.newBuilder()
+                    .setSenderId(selfFdNodeIdStr)
+                    .setNewNodeId(newNodeStr)
+                    .build();
+
+            // Call RemoveFailedNode
+            NewNodeJoinAck response = stub.joinNewNode(request);
+
+            if (response.getAck()) {
+                System.out.println("Python FD at " + selfFdNodeIdStr + " added Node " + newNodeStr);
+            }
+        
+
+            // Close channel
+            channel.shutdown();
+
+        } catch (Exception e) {
+            System.err.println("Failed to notify Failure Detector: " + e.getMessage());
+        }
+    }
+
+
+    private void multicastJoin(String newNodeId) {
+        for (String targetNode : membershipList) {
+            if (targetNode.equals(newNodeId)) {
+                continue;
+            }
+
+            System.out.println("Component Dissemination of Node " + nodeId +
+                    " sends RPC Join to Component Dissemination of Node " + targetNode);
+            
+            try {
+                ManagedChannel channel = ManagedChannelBuilder
+                        .forAddress("localhost", Integer.parseInt(targetNode))
+                        .usePlaintext()
+                        .build();
+
+                DisseminationGrpc.DisseminationBlockingStub stub = DisseminationGrpc.newBlockingStub(channel);
+                JoinRequest request = JoinRequest.newBuilder()
+                        .setNewNodeId(newNodeId)
+                        .build();
+
+                // Perform the NotifyFailure call
+                JoinResponse response = stub.join(request);
+
+                // Gracefully shut down the channel
+                channel.shutdown();
+            } catch (Exception e) {
+                System.err.println("Failed to notify node " + targetNode + ": " + e.getMessage());
+            }
+        }
     }
 
     /**
@@ -194,14 +277,43 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
             System.err.println("Usage: java DisseminationServer <port> [member1 member2 ...]");
             System.exit(1);
         }
-
-        // The first argument is the node ID (typically the port number, e.g. 60051)
+        String[] initialMembers = {"60051", "60052", "60053", "60054", "60055"};
         String nodeId = args[0];
 
-        // Optional subsequent arguments are membership (other 600XX ports)
+        // If additional arguments exist, use them as the membership list; otherwise, use an empty list
         List<String> membership = new ArrayList<>();
-        for (int i = 1; i < args.length; i++) {
-            membership.add(args[i]);
+        if (args.length > 1) {
+            for (int i = 1; i < args.length; i++) {
+                membership.add(args[i]);
+            }
+        }
+
+        if (membership.isEmpty()) {
+            // Open a gRPC channel to the bootstrap member
+            try{
+                String bootstrapNode = initialMembers[1];
+                ManagedChannel channel = ManagedChannelBuilder
+                        .forAddress("localhost", Integer.parseInt(bootstrapNode))
+                        .usePlaintext()
+                        .build();
+
+                DisseminationGrpc.DisseminationBlockingStub stub = DisseminationGrpc.newBlockingStub(channel);
+                JoinRequest request = JoinRequest.newBuilder()
+                    .setNewNodeId(nodeId)
+                    .build();
+
+                JoinResponse response = stub.join(request);
+
+                membership.add(bootstrapNode);
+                membership.addAll(response.getMembershipListList());
+                membership.remove(nodeId);
+                System.err.println(membership);
+                // Close the channel later in your actual use case when necessary
+                channel.shutdown();
+            } catch (Exception e) {
+                System.err.println("Error joining the cluster: " + e.getMessage());
+                System.exit(1);
+            }
         }
 
         DisseminationServer service = new DisseminationServer(nodeId, membership);
