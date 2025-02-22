@@ -1,5 +1,8 @@
 package swim;
 
+import swim.FailedNodeRemovalRequest;
+import swim.FailedNodeRemovedAck;
+
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
@@ -55,6 +58,8 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
         // Remove the failed node from membership
         membershipList.remove(failedNodeId);
 
+        notifyFailureDetectors(failedNodeId);
+
         // Notify other nodes about failure
         // (Any node receiving it for the first time will also remove from membership,
         //  then do a single re-broadcast, etc.)
@@ -67,6 +72,8 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
+
+
 
     @Override
     public void join(JoinRequest request,
@@ -125,6 +132,57 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
             } catch (Exception e) {
                 System.err.println("Failed to notify node " + targetNode + ": " + e.getMessage());
             }
+            
+
+        }
+    }
+
+
+    /**
+     * Calls `NotifyFailure` on all Python Failure Detector components.
+     */
+    private void notifyFailureDetectors(String failedNodeId) {
+        try {
+            // Convert Dissemination ID (600XX) → FD ID (500XX)
+            // int failureDetectorPort = Integer.parseInt(failedNodeId) - 10000;
+            int failedNode = Integer.parseInt(failedNodeId) - 10000;
+            int selfFdNodeId = Integer.parseInt(nodeId) - 10000;
+            String selfFdNodeIdStr = Integer.toString(selfFdNodeId);
+            String failedNodeStr = Integer.toString(failedNode);
+
+
+
+
+            System.out.println("Component Dissemination of Node " + nodeId +
+                    " sending NotifyFailure RPC to Failure Detector at " + selfFdNodeIdStr);
+
+            ManagedChannel channel = ManagedChannelBuilder
+                    .forAddress("localhost", selfFdNodeId)
+                    .usePlaintext()
+                    .build();
+
+
+
+            FailureDetectorGrpc.FailureDetectorBlockingStub stub = FailureDetectorGrpc.newBlockingStub(channel);
+
+            FailedNodeRemovalRequest request = FailedNodeRemovalRequest.newBuilder()
+                    .setSenderId(selfFdNodeIdStr)
+                    .setFailedNodeId(failedNodeStr)
+                    .build();
+
+            // Call RemoveFailedNode
+            FailedNodeRemovedAck response = stub.removeFailedNode(request);
+
+            if (response.getAck()) {
+                System.out.println("Python FD at " + selfFdNodeIdStr + " removed Node " + failedNode);
+            }
+        
+
+            // Close channel
+            channel.shutdown();
+
+        } catch (Exception e) {
+            System.err.println("Failed to notify Failure Detector: " + e.getMessage());
         }
     }
 

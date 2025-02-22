@@ -80,6 +80,37 @@ public final class FailureDetectorGrpc {
     return getIndirectPingMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<swim.FailedNodeRemovalRequest,
+      swim.FailedNodeRemovedAck> getRemoveFailedNodeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RemoveFailedNode",
+      requestType = swim.FailedNodeRemovalRequest.class,
+      responseType = swim.FailedNodeRemovedAck.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<swim.FailedNodeRemovalRequest,
+      swim.FailedNodeRemovedAck> getRemoveFailedNodeMethod() {
+    io.grpc.MethodDescriptor<swim.FailedNodeRemovalRequest, swim.FailedNodeRemovedAck> getRemoveFailedNodeMethod;
+    if ((getRemoveFailedNodeMethod = FailureDetectorGrpc.getRemoveFailedNodeMethod) == null) {
+      synchronized (FailureDetectorGrpc.class) {
+        if ((getRemoveFailedNodeMethod = FailureDetectorGrpc.getRemoveFailedNodeMethod) == null) {
+          FailureDetectorGrpc.getRemoveFailedNodeMethod = getRemoveFailedNodeMethod =
+              io.grpc.MethodDescriptor.<swim.FailedNodeRemovalRequest, swim.FailedNodeRemovedAck>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveFailedNode"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  swim.FailedNodeRemovalRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  swim.FailedNodeRemovedAck.getDefaultInstance()))
+              .setSchemaDescriptor(new FailureDetectorMethodDescriptorSupplier("RemoveFailedNode"))
+              .build();
+        }
+      }
+    }
+    return getRemoveFailedNodeMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -144,6 +175,13 @@ public final class FailureDetectorGrpc {
         io.grpc.stub.StreamObserver<swim.IndirectPingAck> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIndirectPingMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void removeFailedNode(swim.FailedNodeRemovalRequest request,
+        io.grpc.stub.StreamObserver<swim.FailedNodeRemovedAck> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRemoveFailedNodeMethod(), responseObserver);
+    }
   }
 
   /**
@@ -194,6 +232,14 @@ public final class FailureDetectorGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getIndirectPingMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void removeFailedNode(swim.FailedNodeRemovalRequest request,
+        io.grpc.stub.StreamObserver<swim.FailedNodeRemovedAck> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRemoveFailedNodeMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -227,6 +273,13 @@ public final class FailureDetectorGrpc {
     public swim.IndirectPingAck indirectPing(swim.IndirectPingRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getIndirectPingMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public swim.FailedNodeRemovedAck removeFailedNode(swim.FailedNodeRemovalRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRemoveFailedNodeMethod(), getCallOptions(), request);
     }
   }
 
@@ -264,10 +317,19 @@ public final class FailureDetectorGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getIndirectPingMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<swim.FailedNodeRemovedAck> removeFailedNode(
+        swim.FailedNodeRemovalRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRemoveFailedNodeMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PING = 0;
   private static final int METHODID_INDIRECT_PING = 1;
+  private static final int METHODID_REMOVE_FAILED_NODE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -293,6 +355,10 @@ public final class FailureDetectorGrpc {
         case METHODID_INDIRECT_PING:
           serviceImpl.indirectPing((swim.IndirectPingRequest) request,
               (io.grpc.stub.StreamObserver<swim.IndirectPingAck>) responseObserver);
+          break;
+        case METHODID_REMOVE_FAILED_NODE:
+          serviceImpl.removeFailedNode((swim.FailedNodeRemovalRequest) request,
+              (io.grpc.stub.StreamObserver<swim.FailedNodeRemovedAck>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -326,6 +392,13 @@ public final class FailureDetectorGrpc {
               swim.IndirectPingRequest,
               swim.IndirectPingAck>(
                 service, METHODID_INDIRECT_PING)))
+        .addMethod(
+          getRemoveFailedNodeMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              swim.FailedNodeRemovalRequest,
+              swim.FailedNodeRemovedAck>(
+                service, METHODID_REMOVE_FAILED_NODE)))
         .build();
   }
 
@@ -376,6 +449,7 @@ public final class FailureDetectorGrpc {
               .setSchemaDescriptor(new FailureDetectorFileDescriptorSupplier())
               .addMethod(getPingMethod())
               .addMethod(getIndirectPingMethod())
+              .addMethod(getRemoveFailedNodeMethod())
               .build();
         }
       }

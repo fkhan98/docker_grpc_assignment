@@ -45,6 +45,11 @@ class FailureDetectorStub(object):
                 request_serializer=swim__pb2.IndirectPingRequest.SerializeToString,
                 response_deserializer=swim__pb2.IndirectPingAck.FromString,
                 _registered_method=True)
+        self.RemoveFailedNode = channel.unary_unary(
+                '/swim.FailureDetector/RemoveFailedNode',
+                request_serializer=swim__pb2.FailedNodeRemovalRequest.SerializeToString,
+                response_deserializer=swim__pb2.FailedNodeRemovedAck.FromString,
+                _registered_method=True)
 
 
 class FailureDetectorServicer(object):
@@ -63,6 +68,12 @@ class FailureDetectorServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RemoveFailedNode(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FailureDetectorServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -75,6 +86,11 @@ def add_FailureDetectorServicer_to_server(servicer, server):
                     servicer.IndirectPing,
                     request_deserializer=swim__pb2.IndirectPingRequest.FromString,
                     response_serializer=swim__pb2.IndirectPingAck.SerializeToString,
+            ),
+            'RemoveFailedNode': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveFailedNode,
+                    request_deserializer=swim__pb2.FailedNodeRemovalRequest.FromString,
+                    response_serializer=swim__pb2.FailedNodeRemovedAck.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -132,6 +148,33 @@ class FailureDetector(object):
             '/swim.FailureDetector/IndirectPing',
             swim__pb2.IndirectPingRequest.SerializeToString,
             swim__pb2.IndirectPingAck.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RemoveFailedNode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/swim.FailureDetector/RemoveFailedNode',
+            swim__pb2.FailedNodeRemovalRequest.SerializeToString,
+            swim__pb2.FailedNodeRemovedAck.FromString,
             options,
             channel_credentials,
             insecure,

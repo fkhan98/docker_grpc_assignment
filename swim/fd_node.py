@@ -37,6 +37,18 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
                 return swim_pb2.IndirectPingAck(target_id=request.target_id, ack=response.ack)
         except grpc.RpcError:
             return swim_pb2.IndirectPingAck(target_id=request.target_id, ack=False)
+    
+    def RemoveFailedNode(self, request, context):
+        """Handles NotifyFailure by removing the failed node from membership list."""
+        failed_node_id = request.failed_node_id
+
+        if failed_node_id in self.membership_list:
+            self.membership_list.remove(failed_node_id)
+            print(f"Component FailureDetector of Node {self.node_id} removed failed Node {failed_node_id} from membership list.")
+        else:
+            print(f"Component FailureDetector of Node {self.node_id} received NotifyFailure for {failed_node_id}, but it was not found in the membership list.")
+
+        return swim_pb2.FailedNodeRemovedAck(ack=True)
 
     def monitor_nodes(self):
         """Continuously monitor other nodes in the membership list."""
@@ -51,6 +63,7 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
                   f"to Component FailureDetector of Node {target}")
 
             try:
+                time.sleep(60)
                 with grpc.insecure_channel(f'localhost:{target}') as channel:
                     stub = swim_pb2_grpc.FailureDetectorStub(channel)
                     response = stub.Ping(swim_pb2.PingRequest(sender_id=self.node_id), timeout=5)
@@ -90,22 +103,23 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
             else:
                 print(f"Node {target} marked as failed by Node {self.node_id}")
                 self.notify_failure_to_dissemination(target)
-            time.sleep(5)
+            time.sleep(60)
         
     def notify_failure_to_dissemination(self, failed_node_id):
         """Notifies the Java Dissemination service about the failed node."""
         try:
             # Map Failure Detector port (500XX) to its corresponding Dissemination Server (600XX)
             dissemination_port = int(self.node_id) + 10000  # Maps 50051 → 60051, 50052 → 60052, etc.
+            dissemination_failed_node = int(failed_node_id) + 10000
 
-            print(f"Component FailureDetector of Node {self.node_id} notifies Dissemination at {dissemination_port} about failure of Node {failed_node_id}")
+            print(f"Component FailureDetector of Node {self.node_id} notifies  Component Dissemination at {dissemination_port} about failure of Node {failed_node_id}")
 
             with grpc.insecure_channel(f'localhost:{dissemination_port}') as channel:
                 stub = swim_pb2_grpc.DisseminationStub(channel)
 
                 request = swim_pb2.NotifyFailureRequest(
                     sender_id=str(self.node_id),
-                    failed_node_id=str(failed_node_id)
+                    failed_node_id=str(dissemination_failed_node)
                 )
 
                 response = stub.NotifyFailure(request)

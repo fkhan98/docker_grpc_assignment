@@ -9,6 +9,7 @@ package swim;
 service FailureDetector {
   rpc Ping (PingRequest) returns (PingAck);
   rpc IndirectPing (IndirectPingRequest) returns (IndirectPingAck);
+  rpc RemoveFailedNode (FailedNodeRemovalRequest) returns (FailedNodeRemovedAck);
 }
 
 // Dissemination Service
@@ -34,6 +35,15 @@ message IndirectPingRequest {
 message IndirectPingAck {
   string target_id = 1;
   bool ack = 2;
+}
+
+message FailedNodeRemovalRequest{
+  string sender_id =1;
+  string failed_node_id=2;
+}
+
+message FailedNodeRemovedAck{
+  bool ack = 1;
 }
 
 // --- Dissemination Messages ---
