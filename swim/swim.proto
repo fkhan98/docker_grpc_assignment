@@ -68,6 +68,7 @@ message NotifyFailureAck {
 
 message JoinRequest {
   string new_node_id = 1;
+  string bootstrap_node = 2;
 }
 
 message JoinResponse {

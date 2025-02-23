@@ -18,4 +18,16 @@ public interface JoinRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getNewNodeIdBytes();
+
+  /**
+   * <code>string bootstrap_node = 2;</code>
+   * @return The bootstrapNode.
+   */
+  java.lang.String getBootstrapNode();
+  /**
+   * <code>string bootstrap_node = 2;</code>
+   * @return The bytes for bootstrapNode.
+   */
+  com.google.protobuf.ByteString
+      getBootstrapNodeBytes();
 }

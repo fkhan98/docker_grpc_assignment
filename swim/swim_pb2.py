@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nswim.proto\x12\x04swim\" \n\x0bPingRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\"\x16\n\x07PingAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\";\n\x13IndirectPingRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x11\n\ttarget_id\x18\x02 \x01(\t\"1\n\x0fIndirectPingAck\x12\x11\n\ttarget_id\x18\x01 \x01(\t\x12\x0b\n\x03\x61\x63k\x18\x02 \x01(\x08\"E\n\x18\x46\x61iledNodeRemovalRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66\x61iled_node_id\x18\x02 \x01(\t\"#\n\x14\x46\x61iledNodeRemovedAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\"<\n\x12NewNodeJoinRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x13\n\x0bnew_node_id\x18\x02 \x01(\t\"\x1d\n\x0eNewNodeJoinAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\"A\n\x14NotifyFailureRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66\x61iled_node_id\x18\x02 \x01(\t\"\x1f\n\x10NotifyFailureAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\"\"\n\x0bJoinRequest\x12\x13\n\x0bnew_node_id\x18\x01 \x01(\t\"\'\n\x0cJoinResponse\x12\x17\n\x0fmembership_list\x18\x01 \x03(\t2\x8c\x02\n\x0f\x46\x61ilureDetector\x12(\n\x04Ping\x12\x11.swim.PingRequest\x1a\r.swim.PingAck\x12@\n\x0cIndirectPing\x12\x19.swim.IndirectPingRequest\x1a\x15.swim.IndirectPingAck\x12N\n\x10RemoveFailedNode\x12\x1e.swim.FailedNodeRemovalRequest\x1a\x1a.swim.FailedNodeRemovedAck\x12=\n\x0bJoinNewNode\x12\x18.swim.NewNodeJoinRequest\x1a\x14.swim.NewNodeJoinAck2\x83\x01\n\rDissemination\x12\x43\n\rNotifyFailure\x12\x1a.swim.NotifyFailureRequest\x1a\x16.swim.NotifyFailureAck\x12-\n\x04Join\x12\x11.swim.JoinRequest\x1a\x12.swim.JoinResponseB\x08\n\x04swimP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nswim.proto\x12\x04swim\" \n\x0bPingRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\"\x16\n\x07PingAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\";\n\x13IndirectPingRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x11\n\ttarget_id\x18\x02 \x01(\t\"1\n\x0fIndirectPingAck\x12\x11\n\ttarget_id\x18\x01 \x01(\t\x12\x0b\n\x03\x61\x63k\x18\x02 \x01(\x08\"E\n\x18\x46\x61iledNodeRemovalRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66\x61iled_node_id\x18\x02 \x01(\t\"#\n\x14\x46\x61iledNodeRemovedAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\"<\n\x12NewNodeJoinRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x13\n\x0bnew_node_id\x18\x02 \x01(\t\"\x1d\n\x0eNewNodeJoinAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\"A\n\x14NotifyFailureRequest\x12\x11\n\tsender_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66\x61iled_node_id\x18\x02 \x01(\t\"\x1f\n\x10NotifyFailureAck\x12\x0b\n\x03\x61\x63k\x18\x01 \x01(\x08\":\n\x0bJoinRequest\x12\x13\n\x0bnew_node_id\x18\x01 \x01(\t\x12\x16\n\x0e\x62ootstrap_node\x18\x02 \x01(\t\"\'\n\x0cJoinResponse\x12\x17\n\x0fmembership_list\x18\x01 \x03(\t2\x8c\x02\n\x0f\x46\x61ilureDetector\x12(\n\x04Ping\x12\x11.swim.PingRequest\x1a\r.swim.PingAck\x12@\n\x0cIndirectPing\x12\x19.swim.IndirectPingRequest\x1a\x15.swim.IndirectPingAck\x12N\n\x10RemoveFailedNode\x12\x1e.swim.FailedNodeRemovalRequest\x1a\x1a.swim.FailedNodeRemovedAck\x12=\n\x0bJoinNewNode\x12\x18.swim.NewNodeJoinRequest\x1a\x14.swim.NewNodeJoinAck2\x83\x01\n\rDissemination\x12\x43\n\rNotifyFailure\x12\x1a.swim.NotifyFailureRequest\x1a\x16.swim.NotifyFailureAck\x12-\n\x04Join\x12\x11.swim.JoinRequest\x1a\x12.swim.JoinResponseB\x08\n\x04swimP\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -53,11 +53,11 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_NOTIFYFAILUREACK']._serialized_start=458
   _globals['_NOTIFYFAILUREACK']._serialized_end=489
   _globals['_JOINREQUEST']._serialized_start=491
-  _globals['_JOINREQUEST']._serialized_end=525
-  _globals['_JOINRESPONSE']._serialized_start=527
-  _globals['_JOINRESPONSE']._serialized_end=566
-  _globals['_FAILUREDETECTOR']._serialized_start=569
-  _globals['_FAILUREDETECTOR']._serialized_end=837
-  _globals['_DISSEMINATION']._serialized_start=840
-  _globals['_DISSEMINATION']._serialized_end=971
+  _globals['_JOINREQUEST']._serialized_end=549
+  _globals['_JOINRESPONSE']._serialized_start=551
+  _globals['_JOINRESPONSE']._serialized_end=590
+  _globals['_FAILUREDETECTOR']._serialized_start=593
+  _globals['_FAILUREDETECTOR']._serialized_end=861
+  _globals['_DISSEMINATION']._serialized_start=864
+  _globals['_DISSEMINATION']._serialized_end=995
 # @@protoc_insertion_point(module_scope)

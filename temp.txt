@@ -44,3 +44,15 @@ python fd_node.py --port 50055 --membership 50051 50052 50053 50054
 ./gradlew run --args="60055 60051 60052 60053 60054"
 
 60052 60051 60053 60054 60055
+
+./gradlew run --args="60056"
+
+
+python fd_node.py --port 50051 --membership 50052 
+
+python fd_node.py --port 50052 --membership 50051 
+
+
+./gradlew run --args="60051 60052"
+
+./gradlew run --args="60052 60051"

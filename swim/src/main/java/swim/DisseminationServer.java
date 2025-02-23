@@ -92,10 +92,15 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
         notifyFdJoin(newNodeId);
 
-        // Notify other nodes about failure
+        // Notify other nodes about join
         // (Any node receiving it for the first time will also remove from membership,
         //  then do a single re-broadcast, etc.)
-        multicastJoin(newNodeId);
+        // multicastJoin(newNodeId);
+        // Only bootstrap node should multicast the join
+        String bootstrapNode = request.getBootstrapNode(); // Ensure this matches your bootstrap logic
+        if (nodeId.equals(bootstrapNode)) {
+            multicastJoin(newNodeId);
+        }
 
         JoinResponse response = JoinResponse.newBuilder()
                 .addAllMembershipList(membershipList)
@@ -118,7 +123,7 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
 
             System.out.println("Component Dissemination of Node " + nodeId +
-                    " sending NotifyFailure RPC to Failure Detector at " + selfFdNodeIdStr);
+                    " sending New Node Join Notification RPC to Failure Detector at " + selfFdNodeIdStr);
 
             ManagedChannel channel = ManagedChannelBuilder
                     .forAddress("localhost", selfFdNodeId)
@@ -300,6 +305,7 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
                 DisseminationGrpc.DisseminationBlockingStub stub = DisseminationGrpc.newBlockingStub(channel);
                 JoinRequest request = JoinRequest.newBuilder()
                     .setNewNodeId(nodeId)
+                    .setBootstrapNode(bootstrapNode)
                     .build();
 
                 JoinResponse response = stub.join(request);

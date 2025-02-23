@@ -95,19 +95,20 @@ public final class Swim {
       "\n\016NewNodeJoinAck\022\013\n\003ack\030\001 \001(\010\"A\n\024NotifyF" +
       "ailureRequest\022\021\n\tsender_id\030\001 \001(\t\022\026\n\016fail" +
       "ed_node_id\030\002 \001(\t\"\037\n\020NotifyFailureAck\022\013\n\003" +
-      "ack\030\001 \001(\010\"\"\n\013JoinRequest\022\023\n\013new_node_id\030" +
-      "\001 \001(\t\"\'\n\014JoinResponse\022\027\n\017membership_list" +
-      "\030\001 \003(\t2\214\002\n\017FailureDetector\022(\n\004Ping\022\021.swi" +
-      "m.PingRequest\032\r.swim.PingAck\022@\n\014Indirect" +
-      "Ping\022\031.swim.IndirectPingRequest\032\025.swim.I" +
-      "ndirectPingAck\022N\n\020RemoveFailedNode\022\036.swi" +
-      "m.FailedNodeRemovalRequest\032\032.swim.Failed" +
-      "NodeRemovedAck\022=\n\013JoinNewNode\022\030.swim.New" +
-      "NodeJoinRequest\032\024.swim.NewNodeJoinAck2\203\001" +
-      "\n\rDissemination\022C\n\rNotifyFailure\022\032.swim." +
-      "NotifyFailureRequest\032\026.swim.NotifyFailur" +
-      "eAck\022-\n\004Join\022\021.swim.JoinRequest\032\022.swim.J" +
-      "oinResponseB\010\n\004swimP\001b\006proto3"
+      "ack\030\001 \001(\010\":\n\013JoinRequest\022\023\n\013new_node_id\030" +
+      "\001 \001(\t\022\026\n\016bootstrap_node\030\002 \001(\t\"\'\n\014JoinRes" +
+      "ponse\022\027\n\017membership_list\030\001 \003(\t2\214\002\n\017Failu" +
+      "reDetector\022(\n\004Ping\022\021.swim.PingRequest\032\r." +
+      "swim.PingAck\022@\n\014IndirectPing\022\031.swim.Indi" +
+      "rectPingRequest\032\025.swim.IndirectPingAck\022N" +
+      "\n\020RemoveFailedNode\022\036.swim.FailedNodeRemo" +
+      "valRequest\032\032.swim.FailedNodeRemovedAck\022=" +
+      "\n\013JoinNewNode\022\030.swim.NewNodeJoinRequest\032" +
+      "\024.swim.NewNodeJoinAck2\203\001\n\rDissemination\022" +
+      "C\n\rNotifyFailure\022\032.swim.NotifyFailureReq" +
+      "uest\032\026.swim.NotifyFailureAck\022-\n\004Join\022\021.s" +
+      "wim.JoinRequest\032\022.swim.JoinResponseB\010\n\004s" +
+      "wimP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -178,7 +179,7 @@ public final class Swim {
     internal_static_swim_JoinRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_swim_JoinRequest_descriptor,
-        new java.lang.String[] { "NewNodeId", });
+        new java.lang.String[] { "NewNodeId", "BootstrapNode", });
     internal_static_swim_JoinResponse_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_swim_JoinResponse_fieldAccessorTable = new
