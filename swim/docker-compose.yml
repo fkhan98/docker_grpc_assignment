@@ -1,0 +1,203 @@
+version: '3.9'
+
+services:
+  # ---------------------
+  # PYTHON FAILURE DETECTORS
+  # ---------------------
+  python-fd-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.fd
+    container_name: python-fd-1
+    networks:
+      - swim_network
+    volumes:
+      - fd_data:/app/data
+    ports:
+      - "50051:50051"
+    command: >
+      python -u fd_node.py
+      --port python-fd-1:50051
+      --membership
+      python-fd-2:50052
+      python-fd-3:50053
+      python-fd-4:50054
+      python-fd-5:50055
+
+  python-fd-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.fd
+    container_name: python-fd-2
+    networks:
+      - swim_network
+    volumes:
+      - fd_data:/app/data
+    ports:
+      - "50052:50052"
+    command: >
+      python -u fd_node.py
+      --port python-fd-2:50052
+      --membership
+      python-fd-1:50051
+      python-fd-3:50053
+      python-fd-4:50054
+      python-fd-5:50055
+
+  python-fd-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.fd
+    container_name: python-fd-3
+    networks:
+      - swim_network
+    volumes:
+      - fd_data:/app/data
+    ports:
+      - "50053:50053"
+    command: >
+      python -u fd_node.py
+      --port python-fd-3:50053
+      --membership
+      python-fd-1:50051
+      python-fd-2:50052
+      python-fd-4:50054
+      python-fd-5:50055
+
+  python-fd-4:
+    build:
+      context: .
+      dockerfile: Dockerfile.fd
+    container_name: python-fd-4
+    networks:
+      - swim_network
+    volumes:
+      - fd_data:/app/data
+    ports:
+      - "50054:50054"
+    command: >
+      python -u fd_node.py
+      --port python-fd-4:50054
+      --membership
+      python-fd-1:50051
+      python-fd-2:50052
+      python-fd-3:50053
+      python-fd-5:50055
+
+  python-fd-5:
+    build:
+      context: .
+      dockerfile: Dockerfile.fd
+    container_name: python-fd-5
+    networks:
+      - swim_network
+    volumes:
+      - fd_data:/app/data
+    ports:
+      - "50055:50055"
+    command: >
+      python -u fd_node.py
+      --port python-fd-5:50055
+      --membership
+      python-fd-1:50051
+      python-fd-2:50052
+      python-fd-3:50053
+      python-fd-4:50054
+
+  # ---------------------
+  # JAVA DISSEMINATION SERVERS
+  # ---------------------
+  java-d-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.dc
+    container_name: java-d-1
+    networks:
+      - swim_network
+    ports:
+      - "60051:60051"
+    command: [
+      "./gradlew", "run",
+      "--args=java-d-1:60051 java-d-2:60052 java-d-3:60053 java-d-4:60054 java-d-5:60055"
+    ]
+
+  java-d-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.dc
+    container_name: java-d-2
+    networks:
+      - swim_network
+    ports:
+      - "60052:60052"
+    command: [
+      "./gradlew", "run",
+      "--args=java-d-2:60052 java-d-1:60051 java-d-3:60053 java-d-4:60054 java-d-5:60055"
+    ]
+
+
+  java-d-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.dc
+    container_name: java-d-3
+    networks:
+      - swim_network
+    ports:
+      - "60053:60053"
+    command: [
+      "./gradlew", "run",
+      "--args=java-d-3:60053 java-d-1:60051 java-d-2:60052 java-d-4:60054 java-d-5:60055"
+    ]
+
+
+  java-d-4:
+    build:
+      context: .
+      dockerfile: Dockerfile.dc
+    container_name: java-d-4
+    networks:
+      - swim_network
+    ports:
+      - "60054:60054"
+    command: [
+      "./gradlew", "run",
+      "--args=java-d-4:60054 java-d-1:60051 java-d-2:60052 java-d-3:60053 java-d-5:60055"
+    ]
+
+
+  java-d-5:
+    build:
+      context: .
+      dockerfile: Dockerfile.dc
+    container_name: java-d-5
+    networks:
+      - swim_network
+    ports:
+      - "60055:60055"
+    command: [
+      "./gradlew", "run",
+      "--args=java-d-5:60055 java-d-1:60051 java-d-2:60052 java-d-3:60053 java-d-4:60054"
+    ]
+
+
+  # (Optional) Example extra node:
+  java-d-6:
+    build:
+      context: .
+      dockerfile: Dockerfile.dc
+    container_name: java-d-6
+    networks:
+      - swim_network
+    ports:
+      - "60056:60056"
+    command: [
+      "sh", "-c", "sleep 150 && ./gradlew run --args=java-d-6:60056"
+    ]
+
+networks:
+  swim_network:
+    driver: bridge
+
+volumes:
+  fd_data:

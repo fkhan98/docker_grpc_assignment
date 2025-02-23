@@ -13,19 +13,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Simple utility class to store host+port parsing results.
+ */
+// CHANGED: New helper class
+class HostPort {
+    String host;
+    int port;
+
+    HostPort(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
+}
+
 public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase {
 
-    private final String nodeId; // Current node ID (port)
-    private final List<String> membershipList; // Membership list
-    private final Set<String> alreadySeenFailures = ConcurrentHashMap.newKeySet(); // Track processed failures
+    private final String nodeId; // e.g. "java-d-1:60051"
+    private final List<String> membershipList; 
+    private final Set<String> alreadySeenFailures = ConcurrentHashMap.newKeySet(); 
 
     public DisseminationServer(String nodeId, List<String> initialMembership) {
         this.nodeId = nodeId;
         this.membershipList = new ArrayList<>(initialMembership);
+    }
+
+    // CHANGED: Utility to parse strings like "java-d-2:60052" => HostPort("java-d-2", 60052)
+    public static HostPort parseHostPort(String hostPortStr) {
+        String[] parts = hostPortStr.split(":");
+        if (parts.length != 2) {
+            throw new IllegalArgumentException("Membership entry must be 'host:port' but got: " + hostPortStr);
+        }
+        return new HostPort(parts[0], Integer.parseInt(parts[1]));
     }
 
     @Override
@@ -35,8 +57,8 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
         // If we have already processed this node's failure, skip re-broadcast
         if (alreadySeenFailures.contains(failedNodeId)) {
-            System.out.println("Component Dissemination of Node " + nodeId +
-                    " ignores duplicate failure notification for Node " + failedNodeId);
+            // System.out.println("Component Dissemination of Node " + nodeId +
+            //         " ignores duplicate failure notification for Node " + failedNodeId);
 
             NotifyFailureAck response = NotifyFailureAck.newBuilder()
                     .setAck(true)
@@ -54,15 +76,15 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
                 " runs RPC NotifyFailure called by Component Dissemination of Node " +
                 request.getSenderId()
         );
+        System.out.flush();
 
         // Remove the failed node from membership
         membershipList.remove(failedNodeId);
 
+        // Notify local FD that the node failed
         notifyFailureDetectors(failedNodeId);
 
         // Notify other nodes about failure
-        // (Any node receiving it for the first time will also remove from membership,
-        //  then do a single re-broadcast, etc.)
         multicastFailure(request.getSenderId(), failedNodeId);
 
         // Send Ack response back to the caller
@@ -73,35 +95,31 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
         responseObserver.onCompleted();
     }
 
-
-
     @Override
     public void join(JoinRequest request,
                      StreamObserver<JoinResponse> responseObserver) {
         System.out.println(
                 "Component Dissemination of Node " + nodeId +
-                        " runs RPC Join called by Component Dissemination of Node " +
-                        request.getNewNodeId()
+                " runs RPC Join for new Node " +
+                request.getNewNodeId()
         );
-
+        System.out.flush();
         String newNodeId = request.getNewNodeId();
         // Add the new node if not already in membership
         if (!membershipList.contains(newNodeId)) {
             membershipList.add(newNodeId);
         }
 
+        // Tell FD that a new node joined
         notifyFdJoin(newNodeId);
 
-        // Notify other nodes about join
-        // (Any node receiving it for the first time will also remove from membership,
-        //  then do a single re-broadcast, etc.)
-        // multicastJoin(newNodeId);
-        // Only bootstrap node should multicast the join
-        String bootstrapNode = request.getBootstrapNode(); // Ensure this matches your bootstrap logic
+        // If this node is the bootstrap node, multicast the join
+        String bootstrapNode = request.getBootstrapNode(); 
         if (nodeId.equals(bootstrapNode)) {
             multicastJoin(newNodeId);
         }
 
+        // Return updated membership list
         JoinResponse response = JoinResponse.newBuilder()
                 .addAllMembershipList(membershipList)
                 .build();
@@ -112,40 +130,38 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
     private void notifyFdJoin(String newNodeId) {
         try {
-            // Convert Dissemination ID (600XX) → FD ID (500XX)
-            // int failureDetectorPort = Integer.parseInt(failedNodeId) - 10000;
-            int newNode = Integer.parseInt(newNodeId) - 10000;
-            int selfFdNodeId = Integer.parseInt(nodeId) - 10000;
-            String selfFdNodeIdStr = Integer.toString(selfFdNodeId);
-            String newNodeStr = Integer.toString(newNode);
+            // CHANGED: parse local node ID => "java-d-1:60051" => HostPort("java-d-1",60051)
+            HostPort selfHp = parseHostPort(nodeId);
 
+            // Convert "java-d-1" => "python-fd-1", and port => port - 10000
+            String suffix = selfHp.host.substring("java-d-".length()); // e.g. "1"
+            String fdHost = "python-fd-" + suffix;                     // e.g. "python-fd-1"
+            int fdPort = selfHp.port - 10000;                          // e.g. 50051
 
-
-
+            // newNodeId might be "java-d-2:60052" => parse that too if you want to pass that logic
             System.out.println("Component Dissemination of Node " + nodeId +
-                    " sending New Node Join Notification RPC to Failure Detector at " + selfFdNodeIdStr);
-
+                    " sending New Node Join Notification RPC to Failure Detector at " + fdHost + ":" + fdPort);
+            System.out.flush();
+            // CHANGED: remove localhost
             ManagedChannel channel = ManagedChannelBuilder
-                    .forAddress("localhost", selfFdNodeId)
+                    .forAddress(fdHost, fdPort)
                     .usePlaintext()
                     .build();
-
-
 
             FailureDetectorGrpc.FailureDetectorBlockingStub stub = FailureDetectorGrpc.newBlockingStub(channel);
 
             NewNodeJoinRequest request = NewNodeJoinRequest.newBuilder()
-                    .setSenderId(selfFdNodeIdStr)
-                    .setNewNodeId(newNodeStr)
+                    .setSenderId(nodeId)    // or just the suffix, your choice
+                    .setNewNodeId(newNodeId)
                     .build();
 
-            // Call RemoveFailedNode
             NewNodeJoinAck response = stub.joinNewNode(request);
 
             if (response.getAck()) {
-                System.out.println("Python FD at " + selfFdNodeIdStr + " added Node " + newNodeStr);
+                System.out.println("Python FD at " + fdHost + ":" + fdPort + 
+                                   " added new node " + newNodeId);
+                System.out.flush();
             }
-        
 
             // Close channel
             channel.shutdown();
@@ -154,7 +170,6 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
             System.err.println("Failed to notify Failure Detector: " + e.getMessage());
         }
     }
-
 
     private void multicastJoin(String newNodeId) {
         for (String targetNode : membershipList) {
@@ -164,10 +179,13 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
             System.out.println("Component Dissemination of Node " + nodeId +
                     " sends RPC Join to Component Dissemination of Node " + targetNode);
-            
+            System.out.flush();
             try {
+                // CHANGED: parse "host:port"
+                HostPort hp = parseHostPort(targetNode);
+
                 ManagedChannel channel = ManagedChannelBuilder
-                        .forAddress("localhost", Integer.parseInt(targetNode))
+                        .forAddress(hp.host, hp.port) // CHANGED: remove localhost
                         .usePlaintext()
                         .build();
 
@@ -176,129 +194,120 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
                         .setNewNodeId(newNodeId)
                         .build();
 
-                // Perform the NotifyFailure call
-                JoinResponse response = stub.join(request);
+                // Perform the Join call
+                stub.join(request);
 
-                // Gracefully shut down the channel
+                // Gracefully shut down
                 channel.shutdown();
             } catch (Exception e) {
                 System.err.println("Failed to notify node " + targetNode + ": " + e.getMessage());
+                System.out.flush();
             }
         }
     }
 
-    /**
-     * Notify all other members that a node has failed.
-     */
     private void multicastFailure(String senderId, String failedNodeId) {
         for (String targetNode : membershipList) {
-            // Skip the node that has failed (no need to call it)
             if (targetNode.equals(failedNodeId)) {
                 continue;
             }
 
             System.out.println("Component Dissemination of Node " + nodeId +
                     " sends RPC NotifyFailure to Component Dissemination of Node " + targetNode);
-
+            System.out.flush();
             try {
+                // CHANGED: parse "host:port"
+                HostPort hp = parseHostPort(targetNode);
+
                 ManagedChannel channel = ManagedChannelBuilder
-                        .forAddress("localhost", Integer.parseInt(targetNode))
+                        .forAddress(hp.host, hp.port) // CHANGED
                         .usePlaintext()
                         .build();
 
                 DisseminationGrpc.DisseminationBlockingStub stub = DisseminationGrpc.newBlockingStub(channel);
                 NotifyFailureRequest request = NotifyFailureRequest.newBuilder()
-                        .setSenderId(senderId)
+                        .setSenderId(nodeId)
                         .setFailedNodeId(failedNodeId)
                         .build();
 
-                // Perform the NotifyFailure call
                 stub.notifyFailure(request);
-
-                // Gracefully shut down the channel
                 channel.shutdown();
             } catch (Exception e) {
                 System.err.println("Failed to notify node " + targetNode + ": " + e.getMessage());
+                System.out.flush();
             }
-            
-
         }
     }
 
-
-    /**
-     * Calls `NotifyFailure` on all Python Failure Detector components.
-     */
     private void notifyFailureDetectors(String failedNodeId) {
         try {
-            // Convert Dissemination ID (600XX) → FD ID (500XX)
-            // int failureDetectorPort = Integer.parseInt(failedNodeId) - 10000;
-            int failedNode = Integer.parseInt(failedNodeId) - 10000;
-            int selfFdNodeId = Integer.parseInt(nodeId) - 10000;
-            String selfFdNodeIdStr = Integer.toString(selfFdNodeId);
-            String failedNodeStr = Integer.toString(failedNode);
+            // CHANGED: parse local node => "java-d-X:6005X"
+            HostPort selfHp = parseHostPort(nodeId);
+            String suffix = selfHp.host.substring("java-d-".length());
+            String fdHost = "python-fd-" + suffix;
+            int fdPort = selfHp.port - 10000;
 
+            HostPort failedHp = parseHostPort(failedNodeId);
+            String failedsuffix = failedHp.host.substring("java-d-".length());
+            String failedfdHost = "python-fd-" + failedsuffix;
+            int failedfdPort = failedHp.port - 10000;
+            String fdFailedNode = failedfdHost + ":" + failedfdPort;
 
-
-
+            // Possibly parse "failedNodeId" if you want to pass the exact string
             System.out.println("Component Dissemination of Node " + nodeId +
-                    " sending NotifyFailure RPC to Failure Detector at " + selfFdNodeIdStr);
-
+                    " sending NotifyFailure RPC to Failure Detector at " + fdHost + ":" + fdPort);
+            System.out.flush();
             ManagedChannel channel = ManagedChannelBuilder
-                    .forAddress("localhost", selfFdNodeId)
+                    .forAddress(fdHost, fdPort)  // CHANGED: remove localhost
                     .usePlaintext()
                     .build();
-
-
 
             FailureDetectorGrpc.FailureDetectorBlockingStub stub = FailureDetectorGrpc.newBlockingStub(channel);
 
             FailedNodeRemovalRequest request = FailedNodeRemovalRequest.newBuilder()
-                    .setSenderId(selfFdNodeIdStr)
-                    .setFailedNodeId(failedNodeStr)
+                    .setSenderId(nodeId)          // or suffix
+                    // .setFailedNodeId(failedNodeId) 
+                    .setFailedNodeId(fdFailedNode) 
                     .build();
 
-            // Call RemoveFailedNode
             FailedNodeRemovedAck response = stub.removeFailedNode(request);
 
             if (response.getAck()) {
-                System.out.println("Python FD at " + selfFdNodeIdStr + " removed Node " + failedNode);
+                System.out.println("Python FD at " + fdHost + ":" + fdPort
+                        + " removed Node " + failedNodeId);
+                System.out.flush();
             }
-        
 
-            // Close channel
             channel.shutdown();
-
         } catch (Exception e) {
             System.err.println("Failed to notify Failure Detector: " + e.getMessage());
+            System.out.flush();
         }
     }
 
-    /**
-     * Start the gRPC Dissemination server.
-     */
     public static void main(String[] args) throws IOException, InterruptedException {
         if (args.length < 1) {
-            System.err.println("Usage: java DisseminationServer <port> [member1 member2 ...]");
+            System.err.println("Usage: java DisseminationServer <host:port> [member1 member2 ...]");
             System.exit(1);
         }
-        String[] initialMembers = {"60051", "60052", "60053", "60054", "60055"};
+
+        String[] initialMembers = {"java-d-1:60051", "java-d-2:60052", "java-d-3:60053", "java-d-4:60054", "java-d-5:60055"};
+        // CHANGED: We now expect something like "java-d-1:60051" for nodeId
         String nodeId = args[0];
 
-        // If additional arguments exist, use them as the membership list; otherwise, use an empty list
         List<String> membership = new ArrayList<>();
         if (args.length > 1) {
             for (int i = 1; i < args.length; i++) {
-                membership.add(args[i]);
+                membership.add(args[i]); // e.g. "java-d-2:60052"
             }
         }
 
         if (membership.isEmpty()) {
-            // Open a gRPC channel to the bootstrap member
             try{
+                HostPort bootstrap = parseHostPort(initialMembers[1]);
                 String bootstrapNode = initialMembers[1];
                 ManagedChannel channel = ManagedChannelBuilder
-                        .forAddress("localhost", Integer.parseInt(bootstrapNode))
+                        .forAddress(bootstrap.host, bootstrap.port)
                         .usePlaintext()
                         .build();
 
@@ -324,15 +333,20 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
         DisseminationServer service = new DisseminationServer(nodeId, membership);
 
-        // Build & start the gRPC Dissemination server
-        Server server = NettyServerBuilder.forPort(Integer.parseInt(nodeId))
+        // CHANGED: parse the host:port from nodeId to run the server
+        String[] hostPortParts = nodeId.split(":");
+        String host = hostPortParts[0];
+        int port = Integer.parseInt(hostPortParts[1]);
+
+        // Start the gRPC server
+        Server server = NettyServerBuilder
+                .forPort(port)
                 .addService(service)
                 .build()
                 .start();
 
-        System.out.println("Java Dissemination Server started at port " + nodeId);
+        System.out.println("Java Dissemination Server started at " + nodeId);
 
-        // Add a shutdown hook for graceful termination
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Shutting down Dissemination Server on Node " + nodeId);
             server.shutdown();
@@ -343,7 +357,6 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
             }
         }));
 
-        // Wait for the server to terminate
         server.awaitTermination();
     }
 }

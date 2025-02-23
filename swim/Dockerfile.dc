@@ -1,0 +1,28 @@
+# First stage: Build the Java app using Gradle
+FROM gradle:7.5.0-jdk17 AS builder
+WORKDIR /app
+
+# Copy your entire project so Gradle can build.
+COPY . .
+
+# Install any needed dependencies
+RUN apt-get update && apt-get install -y net-tools findutils
+
+# Make gradlew executable
+RUN chmod +x gradlew
+
+# **Do not build a JAR** - just ensure the project compiles
+RUN ./gradlew clean build --info --stacktrace
+
+# Second stage: Use the same Gradle image to run the app
+FROM gradle:7.5.0-jdk17
+WORKDIR /app
+
+# Copy everything from the builder stage (source code + Gradle setup)
+COPY --from=builder /app /app
+
+# Ensure Gradlew is executable
+RUN chmod +x gradlew
+
+# Set the default command to run the Java server using Gradle
+CMD ["./gradlew", "run"]

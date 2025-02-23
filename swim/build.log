@@ -1,0 +1,877 @@
+time="2025-02-23T01:55:23-06:00" level=warning msg="/Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56\u202fAM/swim/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Service java-d-3  Building
+ Service java-d-5  Building
+ Service python-fd-1  Building
+ Service java-d-4  Building
+ Service java-d-6  Building
+ Service java-d-2  Building
+ Service java-d-1  Building
+ Service python-fd-3  Building
+ Service python-fd-5  Building
+ Service python-fd-4  Building
+ Service python-fd-2  Building
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [python-fd-2 internal] load build definition from Dockerfile.fd
+#1 transferring dockerfile: 707B done
+#1 DONE 0.0s
+
+#2 [python-fd-3 internal] load build definition from Dockerfile.fd
+#2 transferring dockerfile: 707B done
+#2 DONE 0.0s
+
+#3 [java-d-6 internal] load build definition from Dockerfile.dc
+#3 transferring dockerfile: 851B done
+#3 DONE 0.0s
+
+#4 [java-d-1 internal] load build definition from Dockerfile.dc
+#4 transferring dockerfile: 851B done
+#4 DONE 0.0s
+
+#5 [java-d-2 internal] load build definition from Dockerfile.dc
+#5 transferring dockerfile: 851B done
+#5 DONE 0.0s
+
+#6 [python-fd-4 internal] load build definition from Dockerfile.fd
+#6 transferring dockerfile: 707B done
+#6 DONE 0.0s
+
+#7 [python-fd-1 internal] load build definition from Dockerfile.fd
+#7 transferring dockerfile: 707B done
+#7 DONE 0.0s
+
+#8 [java-d-4 internal] load build definition from Dockerfile.dc
+#8 transferring dockerfile: 851B done
+#8 DONE 0.0s
+
+#9 [python-fd-5 internal] load build definition from Dockerfile.fd
+#9 transferring dockerfile: 707B done
+#9 DONE 0.0s
+
+#10 [java-d-5 internal] load build definition from Dockerfile.dc
+#10 transferring dockerfile: 851B done
+#10 DONE 0.0s
+
+#11 [java-d-3 internal] load build definition from Dockerfile.dc
+#11 transferring dockerfile: 851B done
+#11 DONE 0.0s
+
+#12 [java-d-2 auth] library/openjdk:pull token for registry-1.docker.io
+#12 DONE 0.0s
+
+#13 [java-d-2 auth] library/gradle:pull token for registry-1.docker.io
+#13 DONE 0.0s
+
+#14 [python-fd-2 auth] library/python:pull token for registry-1.docker.io
+#14 DONE 0.0s
+
+#15 [java-d-3 internal] load metadata for docker.io/library/gradle:7.5.0-jdk17
+#15 DONE 0.6s
+
+#16 [python-fd-5 internal] load metadata for docker.io/library/python:3.9-slim
+#16 DONE 0.6s
+
+#17 [java-d-6 internal] load metadata for docker.io/library/openjdk:17-slim
+#17 DONE 0.6s
+
+#18 [python-fd-4 internal] load .dockerignore
+#18 transferring context: 2B done
+#18 DONE 0.0s
+
+#19 [python-fd-5 internal] load .dockerignore
+#19 transferring context: 2B done
+#19 DONE 0.0s
+
+#20 [python-fd-2 internal] load .dockerignore
+#20 transferring context: 2B done
+#20 DONE 0.0s
+
+#21 [java-d-5 internal] load .dockerignore
+#21 transferring context: 2B done
+#21 DONE 0.0s
+
+#22 [python-fd-1 internal] load .dockerignore
+#22 transferring context: 2B done
+#22 DONE 0.0s
+
+#23 [java-d-6 internal] load .dockerignore
+#23 transferring context: 2B done
+#23 DONE 0.0s
+
+#24 [java-d-1 internal] load .dockerignore
+#24 transferring context: 2B done
+#24 DONE 0.0s
+
+#25 [python-fd-3 1/7] FROM docker.io/library/python:3.9-slim@sha256:f9364cd6e0c146966f8f23fc4fd85d53f2e604bdde74e3c06565194dc4a02f85
+#25 resolve docker.io/library/python:3.9-slim@sha256:f9364cd6e0c146966f8f23fc4fd85d53f2e604bdde74e3c06565194dc4a02f85 0.0s done
+#25 DONE 0.0s
+
+#26 [python-fd-3 2/7] WORKDIR /app
+#26 CACHED
+
+#27 [java-d-4 internal] load .dockerignore
+#27 transferring context: 2B done
+#27 DONE 0.0s
+
+#28 [python-fd-3 internal] load .dockerignore
+#28 transferring context: 2B done
+#28 DONE 0.0s
+
+#29 [java-d-2 stage-1 1/3] FROM docker.io/library/openjdk:17-slim@sha256:aaa3b3cb27e3e520b8f116863d0580c438ed55ecfa0bc126b41f68c3f62f9774
+#29 resolve docker.io/library/openjdk:17-slim@sha256:aaa3b3cb27e3e520b8f116863d0580c438ed55ecfa0bc126b41f68c3f62f9774 0.0s done
+#29 DONE 0.0s
+
+#30 [java-d-2 builder 1/6] FROM docker.io/library/gradle:7.5.0-jdk17@sha256:8dd07704f6d4453f3159154eec16a9551a9efc687079122f46b53ec3a0c716a7
+#30 resolve docker.io/library/gradle:7.5.0-jdk17@sha256:8dd07704f6d4453f3159154eec16a9551a9efc687079122f46b53ec3a0c716a7 0.0s done
+#30 DONE 0.0s
+
+#31 [java-d-3 internal] load .dockerignore
+#31 transferring context: 2B done
+#31 DONE 0.0s
+
+#32 [python-fd-5 internal] load build context
+#32 transferring context: 208B done
+#32 DONE 0.0s
+
+#33 [java-d-2 internal] load .dockerignore
+#33 transferring context: 2B done
+#33 DONE 0.0s
+
+#34 [java-d-3 builder 2/6] WORKDIR /app
+#34 CACHED
+
+#35 [java-d-3 stage-1 2/3] WORKDIR /app
+#35 CACHED
+
+#36 [python-fd-2 internal] load build context
+#36 transferring context: 208B done
+#36 DONE 0.0s
+
+#37 [python-fd-1 internal] load build context
+#37 transferring context: 208B done
+#37 DONE 0.0s
+
+#38 [python-fd-4 internal] load build context
+#38 transferring context: 208B done
+#38 DONE 0.0s
+
+#39 [python-fd-3 internal] load build context
+#39 transferring context: 10.58kB 0.0s done
+#39 DONE 0.1s
+
+#40 [python-fd-3 3/7] COPY requirements.txt requirements.txt
+#40 DONE 0.1s
+
+#41 [python-fd-3 4/7] RUN pip install --no-cache-dir -r requirements.txt
+#41 ...
+
+#42 [java-d-5 internal] load build context
+#42 transferring context: 26.22MB 0.7s done
+#42 DONE 0.7s
+
+#43 [java-d-3 internal] load build context
+#43 transferring context: 26.22MB 0.7s done
+#43 DONE 0.7s
+
+#44 [java-d-1 internal] load build context
+#44 transferring context: 26.24MB 0.7s done
+#44 DONE 0.7s
+
+#45 [java-d-4 internal] load build context
+#45 transferring context: 26.22MB 0.7s done
+#45 DONE 0.7s
+
+#46 [java-d-2 internal] load build context
+#46 transferring context: 26.22MB 0.7s done
+#46 DONE 0.7s
+
+#47 [java-d-6 internal] load build context
+#47 transferring context: 26.22MB 0.7s done
+#47 DONE 0.7s
+
+#48 [java-d-6 builder 3/6] COPY . .
+#48 DONE 0.2s
+
+#49 [java-d-4 builder 4/6] RUN apt-get update && apt-get install -y net-tools findutils
+#49 0.456 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+#49 1.142 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+#49 1.318 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+#49 1.487 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+#49 1.672 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+#49 1.809 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+#49 1.810 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+#49 3.375 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1,758 kB]
+#49 3.471 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [2,593 kB]
+#49 3.539 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1,481 kB]
+#49 3.619 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [30.6 kB]
+#49 3.879 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [3,056 kB]
+#49 ...
+
+#41 [python-fd-5 4/7] RUN pip install --no-cache-dir -r requirements.txt
+#41 1.962 Collecting grpcio==1.70.0
+#41 2.074   Downloading grpcio-1.70.0-cp39-cp39-manylinux_2_17_aarch64.whl (5.7 MB)
+#41 3.019      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.7/5.7 MB 6.0 MB/s eta 0:00:00
+#41 3.679 Collecting grpcio-tools==1.70.0
+#41 3.717   Downloading grpcio_tools-1.70.0-cp39-cp39-manylinux_2_17_aarch64.whl (2.3 MB)
+#41 3.969      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 9.5 MB/s eta 0:00:00
+#41 4.201 Collecting protobuf==5.29.3
+#41 4.242   Downloading protobuf-5.29.3-cp38-abi3-manylinux2014_aarch64.whl (319 kB)
+#41 4.270      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 319.6/319.6 kB 15.4 MB/s eta 0:00:00
+#41 4.289 Requirement already satisfied: setuptools in /usr/local/lib/python3.9/site-packages (from grpcio-tools==1.70.0->-r requirements.txt (line 2)) (58.1.0)
+#41 4.319 Installing collected packages: protobuf, grpcio, grpcio-tools
+#41 4.548 Successfully installed grpcio-1.70.0 grpcio-tools-1.70.0 protobuf-5.29.3
+#41 4.549 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#41 4.668 
+#41 4.668 [notice] A new release of pip is available: 23.0.1 -> 25.0.1
+#41 4.668 [notice] To update, run: pip install --upgrade pip
+#41 DONE 4.8s
+
+#50 [python-fd-3 5/7] COPY fd_node.py .
+#50 DONE 0.0s
+
+#51 [python-fd-2 6/7] COPY swim.proto .
+#51 DONE 0.0s
+
+#52 [python-fd-1 7/7] RUN python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. swim.proto
+#52 DONE 0.1s
+
+#53 [python-fd-5] exporting to image
+#53 exporting layers
+#53 exporting layers 0.7s done
+#53 exporting manifest sha256:d59f1f9791763dc83d8b775ed64cb7ae77d26bbb504758a7a7e1983e581c73b9 0.0s done
+#53 exporting config sha256:cab1315e6df1aa6f8370cfe91e36712875de26ff77c72bbe6206bf8c362845ba 0.0s done
+#53 exporting attestation manifest sha256:8bd3fe19095281ab8d1a8bccd789589e3739932811e1c9db6078e93fdc70ebe6 0.0s done
+#53 exporting manifest list sha256:1023ce00fdf3c2c54c60f5fd5e6dda4c78770cd10907e9b476e7de65ceb3bf6a 0.0s done
+#53 naming to docker.io/library/swim-python-fd-5:latest done
+#53 unpacking to docker.io/library/swim-python-fd-5:latest
+#53 unpacking to docker.io/library/swim-python-fd-5:latest 0.2s done
+#53 DONE 1.0s
+
+#54 [python-fd-1] exporting to image
+#54 exporting layers 0.7s done
+#54 exporting manifest sha256:a680672c08321f9669c9809acaf954bbb697e44a92d81d6bddbcdd9a0dda0f51 0.0s done
+#54 exporting config sha256:8525b050dedb1f470e1d8b14482f983f9660ed9876cefca604be2b7652be60c1 0.0s done
+#54 exporting attestation manifest sha256:2259c953a1d2bcaf4155a9ce571a0c44d03d808dd029bed7e972bb3055a41be9 0.0s done
+#54 exporting manifest list sha256:7ed40f2d9e705d3f719871c84a7494791105a40b8e39e8801d30c18a2988fba4 0.0s done
+#54 naming to docker.io/library/swim-python-fd-1:latest done
+#54 unpacking to docker.io/library/swim-python-fd-1:latest 0.2s done
+#54 DONE 1.0s
+
+#55 [python-fd-4] exporting to image
+#55 exporting layers 0.7s done
+#55 exporting manifest sha256:7a564170fbb04237045d95fe5a90a22097f82dfcc5c82aefe02c191789d86af5 0.0s done
+#55 exporting config sha256:617ccff7376e7a897d8315bd312eea1dc417f067fdadca17083926b8aaf44cca 0.0s done
+#55 exporting attestation manifest sha256:8682dd8ed7d5ad713989184022496553c468623ff755488109aa42e4fbf06c40 0.0s done
+#55 exporting manifest list sha256:dab0c5c4a228135d1139aa42753ff63a1465e8bd0d1973aa2ef0c9e0d80fbe1c 0.0s done
+#55 naming to docker.io/library/swim-python-fd-4:latest done
+#55 unpacking to docker.io/library/swim-python-fd-4:latest 0.2s done
+#55 DONE 1.0s
+
+#56 [python-fd-2] exporting to image
+#56 exporting layers 0.7s done
+#56 exporting manifest sha256:ffe69afae5be21ff1cf4409b38bba7d444f9fa7003aa705d00b5793616269ef5 0.0s done
+#56 exporting config sha256:cb7f7badfc234fc68d22a2ab04d8ad0c2f603a32f92968d1cdfe978b4a2b59d3 0.0s done
+#56 exporting attestation manifest sha256:82e43107bc1c340fa7be56291daaf811fc786e90bf82009418bc507eed3a4a15 0.0s done
+#56 exporting manifest list sha256:ae7813bd13f67a905a429c05ff56f404c9638c5134b5716df7912985aff7f60f 0.0s done
+#56 naming to docker.io/library/swim-python-fd-2:latest done
+#56 unpacking to docker.io/library/swim-python-fd-2:latest 0.2s done
+#56 DONE 1.0s
+
+#57 [python-fd-3] exporting to image
+#57 exporting layers 0.7s done
+#57 exporting manifest sha256:4a85cee9a7b41d5371ca409b60439f2d918a70ec0d236cb6a0ced7018c764ec1 0.0s done
+#57 exporting config sha256:2da6d10a62c5b60a882248befec46951bc9cc11d0615e4a28955a7812fbe00b2 0.0s done
+#57 exporting attestation manifest sha256:e904db4b1cac558e24c03ba178fbb1d85a5bf0e4630b77a09071d36fcb5ae849 0.0s done
+#57 exporting manifest list sha256:d94b99cd934cac5b99b909fb027b36e00b2df5efb998f034425f9e057caa15cb 0.0s done
+#57 naming to docker.io/library/swim-python-fd-3:latest done
+#57 unpacking to docker.io/library/swim-python-fd-3:latest 0.2s done
+#57 DONE 1.0s
+
+#58 [python-fd-1] resolving provenance for metadata file
+ Service python-fd-3  Built
+ Service python-fd-2  Built
+ Service python-fd-1  Built
+ Service python-fd-4  Built
+ Service python-fd-5  Built
+#58 DONE 0.0s
+
+#59 [python-fd-4] resolving provenance for metadata file
+#59 DONE 0.0s
+
+#60 [python-fd-2] resolving provenance for metadata file
+#60 DONE 0.0s
+
+#61 [python-fd-3] resolving provenance for metadata file
+#61 DONE 0.0s
+
+#62 [python-fd-5] resolving provenance for metadata file
+#62 DONE 0.0s
+
+#49 [java-d-4 builder 4/6] RUN apt-get update && apt-get install -y net-tools findutils
+#49 5.101 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [81.0 kB]
+#49 5.104 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [33.3 kB]
+#49 5.106 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [2,278 kB]
+#49 5.491 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1,190 kB]
+#49 5.595 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [2,886 kB]
+#49 5.734 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [24.2 kB]
+#49 5.808 Fetched 33.5 MB in 6s (5,863 kB/s)
+#49 5.808 Reading package lists...
+#49 6.192 Reading package lists...
+#49 6.546 Building dependency tree...
+#49 6.625 Reading state information...
+#49 6.706 findutils is already the newest version (4.8.0-1ubuntu3).
+#49 6.706 The following NEW packages will be installed:
+#49 6.706   net-tools
+#49 6.982 0 upgraded, 1 newly installed, 0 to remove and 93 not upgraded.
+#49 6.982 Need to get 207 kB of archives.
+#49 6.982 After this operation, 774 kB of additional disk space will be used.
+#49 6.982 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 net-tools arm64 1.60+git20181103.0eebece-1ubuntu5 [207 kB]
+#49 7.588 debconf: delaying package configuration, since apt-utils is not installed
+#49 7.597 Fetched 207 kB in 1s (259 kB/s)
+#49 7.608 Selecting previously unselected package net-tools.
+#49 7.608 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 13704 files and directories currently installed.)
+#49 7.611 Preparing to unpack .../net-tools_1.60+git20181103.0eebece-1ubuntu5_arm64.deb ...
+#49 7.612 Unpacking net-tools (1.60+git20181103.0eebece-1ubuntu5) ...
+#49 7.627 Setting up net-tools (1.60+git20181103.0eebece-1ubuntu5) ...
+#49 DONE 7.7s
+
+#63 [java-d-4 builder 5/6] RUN chmod +x gradlew
+#63 DONE 0.1s
+
+#64 [java-d-5 builder 6/6] RUN ./gradlew clean build --info --stacktrace
+#64 0.168 Downloading https://services.gradle.org/distributions/gradle-8.12.1-bin.zip
+#64 1.329 .............10%.............20%.............30%.............40%.............50%.............60%.............70%.............80%.............90%.............100%
+#64 6.506 Initialized native services in: /home/gradle/.gradle/native
+#64 6.510 Initialized jansi services in: /home/gradle/.gradle/native
+#64 6.618 
+#64 6.618 Welcome to Gradle 8.12.1!
+#64 6.618 
+#64 6.618 Here are the highlights of this release:
+#64 6.618  - Enhanced error and warning reporting with the Problems API
+#64 6.618  - File-system watching support on Alpine Linux
+#64 6.618  - Build and test Swift 6 libraries and apps
+#64 6.618 
+#64 6.618 For more details see https://docs.gradle.org/8.12.1/release-notes.html
+#64 6.618 
+#64 6.618 Removing 0 daemon stop events from registry
+#64 6.618 Starting a Gradle Daemon (subsequent builds will be faster)
+#64 6.619 Starting process 'Gradle build daemon'. Working directory: /home/gradle/.gradle/daemon/8.12.1 Command: /opt/java/openjdk/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED -XX:MaxMetaspaceSize=384m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant -cp /root/.gradle/wrapper/dists/gradle-8.12.1-bin/eumc4uhoysa37zql93vfjkxy0/gradle-8.12.1/lib/gradle-daemon-main-8.12.1.jar -javaagent:/root/.gradle/wrapper/dists/gradle-8.12.1-bin/eumc4uhoysa37zql93vfjkxy0/gradle-8.12.1/lib/agents/gradle-instrumentation-agent-8.12.1.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 8.12.1
+#64 6.619 Successfully started process 'Gradle build daemon'
+#64 7.017 An attempt to start the daemon took 0.386 secs.
+#64 7.017 The client will now receive all logging from the daemon (pid: 53). The daemon log file: /home/gradle/.gradle/daemon/8.12.1/daemon-53.out.log
+#64 7.017 Starting build in new daemon [memory: 512 MiB]
+#64 7.218 Using 12 worker leases.
+#64 7.317 Received JVM installation metadata from '/opt/java/openjdk': {JAVA_HOME=/opt/java/openjdk, JAVA_VERSION=17.0.4, JAVA_VENDOR=Eclipse Adoptium, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.4+8, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.4+8, VM_VENDOR=Eclipse Adoptium, OS_ARCH=aarch64}
+#64 7.417 Watching the file system is configured to be enabled if available
+#64 7.417 Unable to list file systems to check whether they can be watched. Disabling watching. Reason: Could not query file systems: could not open mount file (errno 2: No such file or directory)
+#64 7.417 File system watching is inactive
+#64 7.718 Starting Build
+#64 7.718 Caching disabled for Groovy DSL script compilation (cp_settings) because:
+#64 7.718   Build cache is disabled
+#64 7.718   Not worth caching.
+#64 7.718 Compiling settings file '/app/settings.gradle' using SubsetScriptTransformer.
+#64 7.819 Caching disabled for Groovy DSL script compilation (settings) because:
+#64 7.819   Build cache is disabled
+#64 7.819   Not worth caching.
+#64 7.819 Compiling settings file '/app/settings.gradle' using BuildScriptTransformer.
+#64 8.019 Settings evaluated using settings file '/app/settings.gradle'.
+#64 8.117 Projects loaded. Root project using build file '/app/build.gradle'.
+#64 8.117 Included projects: [root project 'swim']
+#64 10.12 
+#64 10.12 > Configure project :
+#64 10.12 Evaluating root project 'swim' using build file '/app/build.gradle'.
+#64 10.12 Caching disabled for Groovy DSL script compilation (cp_proj) because:
+#64 10.12   Build cache is disabled
+#64 10.12   Not worth caching.
+#64 10.12 Compiling build file '/app/build.gradle' using SubsetScriptTransformer.
+#64 10.12 Resolved plugin [id: 'java']
+#64 10.12 Downloading https://plugins.gradle.org/m2/com/google/protobuf/com.google.protobuf.gradle.plugin/0.9.4/com.google.protobuf.gradle.plugin-0.9.4.pom to /home/gradle/.gradle/.tmp/gradle_download165750291607162052bin
+#64 10.12 Resource missing. [HTTP HEAD: https://plugins.gradle.org/m2/com/google/protobuf/com.google.protobuf.gradle.plugin/0.9.4/com.google.protobuf.gradle.plugin-0.9.4.jar]
+#64 10.12 Resolved plugin [id: 'com.google.protobuf', version: '0.9.4']
+#64 10.12 Resolved plugin [id: 'application']
+#64 10.12 Downloading https://plugins.gradle.org/m2/com/google/protobuf/protobuf-gradle-plugin/0.9.4/protobuf-gradle-plugin-0.9.4.pom to /home/gradle/.gradle/.tmp/gradle_download5983705278294436632bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/com/google/gradle/osdetector-gradle-plugin/1.7.3/osdetector-gradle-plugin-1.7.3.pom to /home/gradle/.gradle/.tmp/gradle_download203319183060837878bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/kr/motd/maven/os-maven-plugin/1.7.1/os-maven-plugin-1.7.1.pom to /home/gradle/.gradle/.tmp/gradle_download13061497855416509903bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom to /home/gradle/.gradle/.tmp/gradle_download1462880201519209016bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.pom to /home/gradle/.gradle/.tmp/gradle_download15731311852758640692bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom to /home/gradle/.gradle/.tmp/gradle_download3503123543893435423bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/com/google/protobuf/protobuf-gradle-plugin/0.9.4/protobuf-gradle-plugin-0.9.4.jar to /home/gradle/.gradle/.tmp/gradle_download9236626533509784137bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/kr/motd/maven/os-maven-plugin/1.7.1/os-maven-plugin-1.7.1.jar to /home/gradle/.gradle/.tmp/gradle_download17297779138284245399bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/com/google/gradle/osdetector-gradle-plugin/1.7.3/osdetector-gradle-plugin-1.7.3.jar to /home/gradle/.gradle/.tmp/gradle_download3457646980457509928bin
+#64 10.12 Downloading https://plugins.gradle.org/m2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar to /home/gradle/.gradle/.tmp/gradle_download15632293009120881999bin
+#64 10.12 Caching disabled for InstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.gradle/osdetector-gradle-plugin/1.7.3/a0b3fd1a2f168402909f950a8d42aefb3392f602/osdetector-gradle-plugin-1.7.3.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for InstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-gradle-plugin/0.9.4/46c27b68d13501ba5a9ceee0596013eb1c42e8e9/protobuf-gradle-plugin-0.9.4.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for InstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/kr.motd.maven/os-maven-plugin/1.7.1/95606534d4772faced32f89aded251d4281a2d0/os-maven-plugin-1.7.1.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for InstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/0a955eda086623a18db316cdffb5212f/transformed/.gradle-instrumented-classpath.marker because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/94bb42e2b60e12c13149ae5ac0933e41/transformed/analysis/instrumentation-hierarchy.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/0a955eda086623a18db316cdffb5212f/transformed/analysis/instrumentation-hierarchy.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/c79fcfafe10fb50fa9b32abef04ff682/transformed/analysis/instrumentation-hierarchy.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/9ecc1321292dddc765cf6edf788f1c22/transformed/analysis/instrumentation-hierarchy.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/0a955eda086623a18db316cdffb5212f/transformed/analysis/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/c79fcfafe10fb50fa9b32abef04ff682/transformed/analysis/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/9ecc1321292dddc765cf6edf788f1c22/transformed/analysis/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/8.12.1/transforms/94bb42e2b60e12c13149ae5ac0933e41/transformed/analysis/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.gradle/osdetector-gradle-plugin/1.7.3/a0b3fd1a2f168402909f950a8d42aefb3392f602/osdetector-gradle-plugin-1.7.3.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/kr.motd.maven/os-maven-plugin/1.7.1/95606534d4772faced32f89aded251d4281a2d0/os-maven-plugin-1.7.1.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for MergeInstrumentationAnalysisTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-gradle-plugin/0.9.4/46c27b68d13501ba5a9ceee0596013eb1c42e8e9/protobuf-gradle-plugin-0.9.4.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/8.12.1/transforms/b50227a52877f6288bbaaa76e09096da/transformed/.gradle-instrumented-classpath.marker because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/8.12.1/transforms/2a19dad0fd16e00e4748a27540e2843d/transformed/merge/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/8.12.1/transforms/b50227a52877f6288bbaaa76e09096da/transformed/merge/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/8.12.1/transforms/802a4a22cace3085f8b5b8c15bbb793c/transformed/merge/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.gradle/osdetector-gradle-plugin/1.7.3/a0b3fd1a2f168402909f950a8d42aefb3392f602/osdetector-gradle-plugin-1.7.3.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/8.12.1/transforms/7abb03a4248832488125501c31209246/transformed/merge/instrumentation-dependencies.bin because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/kr.motd.maven/os-maven-plugin/1.7.1/95606534d4772faced32f89aded251d4281a2d0/os-maven-plugin-1.7.1.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.12 Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-gradle-plugin/0.9.4/46c27b68d13501ba5a9ceee0596013eb1c42e8e9/protobuf-gradle-plugin-0.9.4.jar because:
+#64 10.12   Build cache is disabled
+#64 10.12   Caching not enabled.
+#64 10.32 Caching disabled for Groovy DSL script compilation (proj) because:
+#64 10.32   Build cache is disabled
+#64 10.32   Not worth caching.
+#64 10.32 Compiling build file '/app/build.gradle' using BuildScriptTransformer.
+#64 10.52 ------------------------------------------------------------------------
+#64 10.52 Detecting the operating system and CPU architecture
+#64 10.52 ------------------------------------------------------------------------
+#64 10.52 os.detected.name=linux
+#64 10.52 os.detected.arch=aarch_64
+#64 10.52 os.detected.bitness=64
+#64 10.52 os.detected.version=6.10
+#64 10.52 os.detected.version.major=6
+#64 10.52 os.detected.version.minor=10
+#64 10.52 os.detected.release=ubuntu
+#64 10.52 os.detected.release.version=22.04
+#64 10.52 os.detected.release.like.ubuntu=true
+#64 10.52 os.detected.release.like.debian=true
+#64 10.52 os.detected.classifier=linux-aarch_64
+#64 10.52 All projects evaluated.
+#64 10.52 Task name matched 'clean'
+#64 10.52 Task name matched 'build'
+#64 10.52 Selected primary task 'clean' from project :
+#64 10.52 Selected primary task 'build' from project :
+#64 10.72 Tasks to be executed: [task ':clean', task ':extractIncludeProto', task ':extractProto', task ':generateProto', task ':compileJava', task ':processResources', task ':classes', task ':jar', task ':startScripts', task ':distTar', task ':distZip', task ':assemble', task ':extractIncludeTestProto', task ':extractTestProto', task ':generateTestProto', task ':compileTestJava', task ':processTestResources', task ':testClasses', task ':test', task ':check', task ':build']
+#64 10.72 Tasks that were excluded: []
+#64 10.72 Resolve mutations for :clean (Thread[Execution worker,5,main]) started.
+#64 10.72 :clean (Thread[Execution worker,5,main]) started.
+#64 10.72 destroyer locations for task group 0 (Thread[included builds,5,main]) started.
+#64 10.72 
+#64 10.72 > Task :clean
+#64 10.72 Caching disabled for task ':clean' because:
+#64 10.72   Build cache is disabled
+#64 10.72 Task ':clean' is not up-to-date because:
+#64 10.72   Task has not declared any outputs despite executing actions.
+#64 10.72 Resolve mutations for :extractIncludeProto (Thread[Execution worker,5,main]) started.
+#64 10.72 :extractIncludeProto (Thread[Execution worker,5,main]) started.
+#64 12.42 
+#64 12.42 > Task :extractIncludeProto
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-protobuf/1.57.2/grpc-protobuf-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download13237926460481169784bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-stub/1.57.2/grpc-stub-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download5824713131817529078bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.pom to /home/gradle/.gradle/.tmp/gradle_download983682717132811251bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-java/3.23.4/protobuf-java-3.23.4.pom to /home/gradle/.gradle/.tmp/gradle_download14911778505382663003bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-netty/1.57.2/grpc-netty-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download936558220866736415bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-parent/3.23.4/protobuf-parent-3.23.4.pom to /home/gradle/.gradle/.tmp/gradle_download5797278586694913939bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/net/java/jvnet-parent/3/jvnet-parent-3.pom to /home/gradle/.gradle/.tmp/gradle_download16185583981384610003bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-bom/3.23.4/protobuf-bom-3.23.4.pom to /home/gradle/.gradle/.tmp/gradle_download9364669742726083978bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-core/1.57.2/grpc-core-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download12432447897787079845bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec-http2/4.1.93.Final/netty-codec-http2-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download13460991993616417883bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-transport-native-unix-common/4.1.93.Final/netty-transport-native-unix-common-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download8493580317726337660bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.18.0/error_prone_annotations-2.18.0.pom to /home/gradle/.gradle/.tmp/gradle_download2485195470887832946bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/guava/32.0.1-android/guava-32.0.1-android.pom to /home/gradle/.gradle/.tmp/gradle_download7131792684787766494bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/32.0.1-android/guava-parent-32.0.1-android.pom to /home/gradle/.gradle/.tmp/gradle_download16915528977789616247bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_parent/2.18.0/error_prone_parent-2.18.0.pom to /home/gradle/.gradle/.tmp/gradle_download18312003291717617386bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-parent/4.1.93.Final/netty-parent-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download14056910095128415803bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/perfmark/perfmark-api/0.26.0/perfmark-api-0.26.0.pom to /home/gradle/.gradle/.tmp/gradle_download190471169847247175bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-handler-proxy/4.1.93.Final/netty-handler-proxy-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download4490701065812908697bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/perfmark/perfmark-api/0.26.0/perfmark-api-0.26.0.module to /home/gradle/.gradle/.tmp/gradle_download10687592360203379794bin
+#64 12.42 Found locally available resource with matching checksum: [https://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom, /home/gradle/.gradle/caches/modules-2/files-2.1/org.sonatype.oss/oss-parent/9/e5cdc4d23b86d79c436f16fed20853284e868f65/oss-parent-9.pom]
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-api/1.57.2/grpc-api-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download17731357325916061049bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/api/grpc/proto-google-common-protos/2.17.0/proto-google-common-protos-2.17.0.pom to /home/gradle/.gradle/.tmp/gradle_download3391798225298329828bin
+#64 12.42 Found locally available resource with matching checksum: [https://repo.maven.apache.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.pom, /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/8d93cdf4d84d7e1de736df607945c6df0730a10f/jsr305-3.0.2.pom]
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-protobuf-lite/1.57.2/grpc-protobuf-lite-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download13685101809966026918bin
+#64 12.42 Found locally available resource with matching checksum: [https://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom, /home/gradle/.gradle/caches/modules-2/files-2.1/org.sonatype.oss/oss-parent/7/46b8a785b60a2767095b8611613b58577e96d4c9/oss-parent-7.pom]
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/android/annotations/4.1.1.4/annotations-4.1.1.4.pom to /home/gradle/.gradle/.tmp/gradle_download6975623093719469808bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-annotations/1.23/animal-sniffer-annotations-1.23.pom to /home/gradle/.gradle/.tmp/gradle_download1426768020387889217bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.10.1/gson-2.10.1.pom to /home/gradle/.gradle/.tmp/gradle_download14899011359870664218bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-context/1.57.2/grpc-context-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download16436805628187830616bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-parent/1.23/animal-sniffer-parent-1.23.pom to /home/gradle/.gradle/.tmp/gradle_download4769677793141954574bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.10.1/gson-parent-2.10.1.pom to /home/gradle/.gradle/.tmp/gradle_download1302534568113526432bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/codehaus/mojo/mojo-parent/74/mojo-parent-74.pom to /home/gradle/.gradle/.tmp/gradle_download9719450893307448840bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.2/junit-bom-5.9.2.pom to /home/gradle/.gradle/.tmp/gradle_download14938889522365511459bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.2/junit-bom-5.9.2.module to /home/gradle/.gradle/.tmp/gradle_download15796408346227888048bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec/4.1.93.Final/netty-codec-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download8632919418494605046bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec-http/4.1.93.Final/netty-codec-http-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download8730147287655845454bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-transport/4.1.93.Final/netty-transport-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download7182530242783625954bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-buffer/4.1.93.Final/netty-buffer-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download4980191623363340661bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-handler/4.1.93.Final/netty-handler-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download5147898818061996406bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-common/4.1.93.Final/netty-common-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download927388618711201410bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec-socks/4.1.93.Final/netty-codec-socks-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download11758083567074511700bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.pom to /home/gradle/.gradle/.tmp/gradle_download8841513204064830480bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.pom to /home/gradle/.gradle/.tmp/gradle_download13984612714884892921bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.pom to /home/gradle/.gradle/.tmp/gradle_download15210344495882101677bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.33.0/checker-qual-3.33.0.pom to /home/gradle/.gradle/.tmp/gradle_download2878708540559694166bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/26.0-android/guava-parent-26.0-android.pom to /home/gradle/.gradle/.tmp/gradle_download7574136204017596516bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.33.0/checker-qual-3.33.0.module to /home/gradle/.gradle/.tmp/gradle_download17384883955623865454bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-resolver/4.1.93.Final/netty-resolver-4.1.93.Final.pom to /home/gradle/.gradle/.tmp/gradle_download9626212304103629213bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar to /home/gradle/.gradle/.tmp/gradle_download12326376730302538132bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-context/1.57.2/grpc-context-1.57.2.jar to /home/gradle/.gradle/.tmp/gradle_download1476581150811473836bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-protobuf/1.57.2/grpc-protobuf-1.57.2.jar to /home/gradle/.gradle/.tmp/gradle_download8838101098791825781bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-netty/1.57.2/grpc-netty-1.57.2.jar to /home/gradle/.gradle/.tmp/gradle_download15396925115881159807bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec-http2/4.1.93.Final/netty-codec-http2-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download4940807147398254877bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-java/3.23.4/protobuf-java-3.23.4.jar to /home/gradle/.gradle/.tmp/gradle_download14493790455166597624bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/api/grpc/proto-google-common-protos/2.17.0/proto-google-common-protos-2.17.0.jar to /home/gradle/.gradle/.tmp/gradle_download15047435032000407284bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/guava/32.0.1-android/guava-32.0.1-android.jar to /home/gradle/.gradle/.tmp/gradle_download360885243499687509bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.18.0/error_prone_annotations-2.18.0.jar to /home/gradle/.gradle/.tmp/gradle_download3170854869482798917bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/perfmark/perfmark-api/0.26.0/perfmark-api-0.26.0.jar to /home/gradle/.gradle/.tmp/gradle_download10496788178281704396bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-core/1.57.2/grpc-core-1.57.2.jar to /home/gradle/.gradle/.tmp/gradle_download1336929424591341162bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-handler-proxy/4.1.93.Final/netty-handler-proxy-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download172727247647245879bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-api/1.57.2/grpc-api-1.57.2.jar to /home/gradle/.gradle/.tmp/gradle_download5279399481653763163bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-stub/1.57.2/grpc-stub-1.57.2.jar to /home/gradle/.gradle/.tmp/gradle_download16449671636464560150bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/grpc/grpc-protobuf-lite/1.57.2/grpc-protobuf-lite-1.57.2.jar to /home/gradle/.gradle/.tmp/gradle_download18382926848203893413bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec-http/4.1.93.Final/netty-codec-http-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download119019378812211415bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-handler/4.1.93.Final/netty-handler-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download16283941776458266992bin
+#64 12.42 Found locally available resource with matching checksum: [https://repo.maven.apache.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar, /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar]
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-transport-native-unix-common/4.1.93.Final/netty-transport-native-unix-common-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download14106500735653715336bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar to /home/gradle/.gradle/.tmp/gradle_download16297692863588516771bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/android/annotations/4.1.1.4/annotations-4.1.1.4.jar to /home/gradle/.gradle/.tmp/gradle_download6826906956161747130bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec-socks/4.1.93.Final/netty-codec-socks-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download14296325354107859537bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-annotations/1.23/animal-sniffer-annotations-1.23.jar to /home/gradle/.gradle/.tmp/gradle_download17436220015048226188bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-codec/4.1.93.Final/netty-codec-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download13384222225809695677bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-transport/4.1.93.Final/netty-transport-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download6242049268367650043bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-buffer/4.1.93.Final/netty-buffer-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download9805497525289428901bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-resolver/4.1.93.Final/netty-resolver-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download9773710533866414531bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/io/netty/netty-common/4.1.93.Final/netty-common-4.1.93.Final.jar to /home/gradle/.gradle/.tmp/gradle_download8521759630450172716bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar to /home/gradle/.gradle/.tmp/gradle_download2456772346867463517bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar to /home/gradle/.gradle/.tmp/gradle_download13943334216681033359bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.33.0/checker-qual-3.33.0.jar to /home/gradle/.gradle/.tmp/gradle_download2334615567153700474bin
+#64 12.42 Downloading https://repo.maven.apache.org/maven2/com/google/j2objc/j2objc-annotations/2.8/j2objc-annotations-2.8.jar to /home/gradle/.gradle/.tmp/gradle_download1536677946783892507bin
+#64 12.42 Caching disabled for task ':extractIncludeProto' because:
+#64 12.42   Build cache is disabled
+#64 12.42   Caching has not been enabled for the task
+#64 12.42 Task ':extractIncludeProto' is not up-to-date because:
+#64 12.42   Output property 'destDir' file /app/build/extracted-include-protos/main has been removed.
+#64 12.42   Output property 'destDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/extracted-include-protos/main/google has been removed.
+#64 12.42   Output property 'destDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/extracted-include-protos/main/google/api has been removed.
+#64 12.42   and more...
+#64 12.42 Resolve mutations for :extractProto (Thread[Execution worker,5,main]) started.
+#64 12.42 :extractProto (Thread[included builds,5,main]) started.
+#64 12.42 
+#64 12.42 > Task :extractProto
+#64 12.42 Caching disabled for task ':extractProto' because:
+#64 12.42   Build cache is disabled
+#64 12.42   Caching has not been enabled for the task
+#64 12.42 Task ':extractProto' is not up-to-date because:
+#64 12.42   Output property 'destDir' file /app/build/extracted-protos/main has been removed.
+#64 12.42 Resolve mutations for :generateProto (Thread[included builds,5,main]) started.
+#64 12.42 :generateProto (Thread[included builds,5,main]) started.
+#64 14.22 
+#64 14.22 > Task :generateProto
+#64 14.22 Custom actions are attached to task ':generateProto'.
+#64 14.22 Caching disabled for task ':generateProto' because:
+#64 14.22   Build cache is disabled
+#64 14.22 Task ':generateProto' is not up-to-date because:
+#64 14.22   Output property 'outputBaseDir' file /app/build/generated/source/proto/main has been removed.
+#64 14.22   Output property 'outputBaseDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/generated/source/proto/main/grpc has been removed.
+#64 14.22   Output property 'outputBaseDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/generated/source/proto/main/grpc/swim has been removed.
+#64 14.22   and more...
+#64 14.22 Downloading https://repo.maven.apache.org/maven2/com/google/protobuf/protoc/3.23.4/protoc-3.23.4.pom to /home/gradle/.gradle/.tmp/gradle_download3495855372521472320bin
+#64 14.22 Downloading https://repo.maven.apache.org/maven2/com/google/google/5/google-5.pom to /home/gradle/.gradle/.tmp/gradle_download14933567255553740540bin
+#64 14.22 Downloading https://repo.maven.apache.org/maven2/com/google/protobuf/protoc/3.23.4/protoc-3.23.4-linux-aarch_64.exe to /home/gradle/.gradle/.tmp/gradle_download16490995188865898913bin
+#64 14.22 Resolved artifact: /home/gradle/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protoc/3.23.4/a184a016e93138fc858b405ffe93c6eaba82667f/protoc-3.23.4-linux-aarch_64.exe
+#64 14.22 Downloading https://repo.maven.apache.org/maven2/io/grpc/protoc-gen-grpc-java/1.57.2/protoc-gen-grpc-java-1.57.2.pom to /home/gradle/.gradle/.tmp/gradle_download12749645864423466878bin
+#64 14.22 Downloading https://repo.maven.apache.org/maven2/io/grpc/protoc-gen-grpc-java/1.57.2/protoc-gen-grpc-java-1.57.2-linux-aarch_64.exe to /home/gradle/.gradle/.tmp/gradle_download1844166795573584022bin
+#64 14.22 Resolved artifact: /home/gradle/.gradle/caches/modules-2/files-2.1/io.grpc/protoc-gen-grpc-java/1.57.2/ea1162816a0908560bf7905d1a11786350858ea5/protoc-gen-grpc-java-1.57.2-linux-aarch_64.exe
+#64 14.22 [/home/gradle/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protoc/3.23.4/a184a016e93138fc858b405ffe93c6eaba82667f/protoc-3.23.4-linux-aarch_64.exe, -I/app/src/main/proto, -I/app/build/extracted-protos/main, -I/app/build/extracted-include-protos/main, --java_out=/app/build/generated/source/proto/main/java, --plugin=protoc-gen-grpc=/home/gradle/.gradle/caches/modules-2/files-2.1/io.grpc/protoc-gen-grpc-java/1.57.2/ea1162816a0908560bf7905d1a11786350858ea5/protoc-gen-grpc-java-1.57.2-linux-aarch_64.exe, --grpc_out=/app/build/generated/source/proto/main/grpc, /app/src/main/proto/swim.proto]
+#64 14.22 protoc: stdout: . stderr: 
+#64 14.22 Resolve mutations for :compileJava (Thread[included builds,5,main]) started.
+#64 14.22 :compileJava (Thread[included builds,5,main]) started.
+#64 15.92 
+#64 15.92 > Task :compileJava
+#64 15.92 Caching disabled for task ':compileJava' because:
+#64 15.92   Build cache is disabled
+#64 15.92 Task ':compileJava' is not up-to-date because:
+#64 15.92   Value of input property 'javaCompiler.metadata.languageVersion' has changed for task ':compileJava'
+#64 15.92   Value of input property 'javaCompiler.metadata.taskInputs.languageVersion' has changed for task ':compileJava'
+#64 15.92   Value of input property 'javaVersion' has changed for task ':compileJava'
+#64 15.92 The input changes require a full rebuild for incremental task ':compileJava'.
+#64 15.92 Compilation mode: in-process compilation
+#64 15.92 Full recompilation is required because no incremental change information is available. This is usually caused by clean builds or changing compiler arguments.
+#64 15.92 Compiling with toolchain '/opt/java/openjdk'.
+#64 15.92 Compiling with JDK Java compiler API.
+#64 15.92 Class dependency analysis for incremental compilation took 0.027 secs.
+#64 15.92 Created classpath snapshot for incremental compilation in 0.56 secs.
+#64 15.92 Resolve mutations for :processResources (Thread[included builds,5,main]) started.
+#64 15.92 :processResources (Thread[included builds,5,main]) started.
+#64 15.92 
+#64 15.92 > Task :processResources
+#64 15.92 Caching disabled for task ':processResources' because:
+#64 15.92   Build cache is disabled
+#64 15.92   Not worth caching
+#64 15.92 Task ':processResources' is not up-to-date because:
+#64 15.92   Output property 'destinationDir' file /app/build/resources/main has been removed.
+#64 15.92   Output property 'destinationDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/resources/main/swim.proto has been removed.
+#64 15.92 file or directory '/app/src/main/resources', not found
+#64 15.92 Resolve mutations for :classes (Thread[included builds,5,main]) started.
+#64 15.92 :classes (Thread[included builds,5,main]) started.
+#64 15.92 
+#64 15.92 > Task :classes
+#64 15.92 Skipping task ':classes' as it has no actions.
+#64 15.92 Resolve mutations for :jar (Thread[included builds,5,main]) started.
+#64 15.92 :jar (Thread[included builds,5,main]) started.
+#64 15.92 
+#64 15.92 > Task :jar
+#64 15.92 Caching disabled for task ':jar' because:
+#64 15.92   Build cache is disabled
+#64 15.92   Not worth caching
+#64 15.92 Task ':jar' is not up-to-date because:
+#64 15.92   Output property 'archiveFile' file /app/build/libs/swim-1.0.0-SNAPSHOT.jar has been removed.
+#64 15.92 Resolve mutations for :startScripts (Thread[included builds,5,main]) started.
+#64 15.92 :startScripts (Thread[included builds,5,main]) started.
+#64 16.22 
+#64 16.22 > Task :startScripts
+#64 16.22 Caching disabled for task ':startScripts' because:
+#64 16.22   Build cache is disabled
+#64 16.22   Not worth caching
+#64 16.22 Task ':startScripts' is not up-to-date because:
+#64 16.22   Output property 'outputDir' file /app/build/scripts has been removed.
+#64 16.22   Output property 'outputDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/scripts/swim has been removed.
+#64 16.22   Output property 'outputDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/scripts/swim.bat has been removed.
+#64 16.22 Resolve mutations for :distTar (Thread[included builds,5,main]) started.
+#64 16.22 :distTar (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.22 
+#64 16.22 > Task :distTar
+#64 16.22 Caching disabled for task ':distTar' because:
+#64 16.22   Build cache is disabled
+#64 16.22   Not worth caching
+#64 16.22 Task ':distTar' is not up-to-date because:
+#64 16.22   Output property 'archiveFile' file /app/build/distributions/swim-1.0.0-SNAPSHOT.tar has been removed.
+#64 16.22 file or directory '/app/src/main/dist', not found
+#64 16.22 file or directory '/app/src/dist', not found
+#64 16.22 Resolve mutations for :distZip (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.22 :distZip (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.42 
+#64 16.42 > Task :distZip
+#64 16.42 Caching disabled for task ':distZip' because:
+#64 16.42   Build cache is disabled
+#64 16.42   Not worth caching
+#64 16.42 Task ':distZip' is not up-to-date because:
+#64 16.42   Output property 'archiveFile' file /app/build/distributions/swim-1.0.0-SNAPSHOT.zip has been removed.
+#64 16.42 file or directory '/app/src/main/dist', not found
+#64 16.42 file or directory '/app/src/dist', not found
+#64 16.42 Resolve mutations for :assemble (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.42 :assemble (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.42 
+#64 16.42 > Task :assemble
+#64 16.42 Skipping task ':assemble' as it has no actions.
+#64 16.42 Resolve mutations for :extractIncludeTestProto (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.42 :extractIncludeTestProto (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :extractIncludeTestProto
+#64 16.51 Caching disabled for task ':extractIncludeTestProto' because:
+#64 16.51   Build cache is disabled
+#64 16.51   Caching has not been enabled for the task
+#64 16.51 Task ':extractIncludeTestProto' is not up-to-date because:
+#64 16.51   Output property 'destDir' file /app/build/extracted-include-protos/test has been removed.
+#64 16.51   Output property 'destDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/extracted-include-protos/test/google has been removed.
+#64 16.51   Output property 'destDir' file /Users/fahimkhan/Documents/Coursework/2nd semester/CSE 5306/assignment_1/docker_grpc_assignment 12.27.56 AM/swim/build/extracted-include-protos/test/google/api has been removed.
+#64 16.51   and more...
+#64 16.51 Resolve mutations for :extractTestProto (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :extractTestProto (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :extractTestProto
+#64 16.51 Caching disabled for task ':extractTestProto' because:
+#64 16.51   Build cache is disabled
+#64 16.51   Caching has not been enabled for the task
+#64 16.51 Task ':extractTestProto' is not up-to-date because:
+#64 16.51   Output property 'destDir' file /app/build/extracted-protos/test has been removed.
+#64 16.51 Resolve mutations for :generateTestProto (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :generateTestProto (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :generateTestProto NO-SOURCE
+#64 16.51 Skipping task ':generateTestProto' as it has no source files and no previous output files.
+#64 16.51 Resolve mutations for :compileTestJava (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :compileTestJava (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :compileTestJava NO-SOURCE
+#64 16.51 Skipping task ':compileTestJava' as it has no source files and no previous output files.
+#64 16.51 Resolve mutations for :processTestResources (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :processTestResources (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :processTestResources NO-SOURCE
+#64 16.51 Skipping task ':processTestResources' as it has no source files and no previous output files.
+#64 16.51 Resolve mutations for :testClasses (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :testClasses (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :testClasses UP-TO-DATE
+#64 16.51 Skipping task ':testClasses' as it has no actions.
+#64 16.51 Resolve mutations for :test (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :test (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :test NO-SOURCE
+#64 16.51 Skipping task ':test' as it has no source files and no previous output files.
+#64 16.51 Resolve mutations for :check (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :check (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :check UP-TO-DATE
+#64 16.51 Skipping task ':check' as it has no actions.
+#64 16.51 Resolve mutations for :build (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 :build (Thread[Execution worker Thread 10,5,main]) started.
+#64 16.51 
+#64 16.51 > Task :build
+#64 16.51 Skipping task ':build' as it has no actions.
+#64 16.51 
+#64 16.51 [Incubating] Problems report is available at: file:///app/build/reports/problems/problems-report.html
+#64 16.51 
+#64 16.51 Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+#64 16.51 
+#64 16.51 You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+#64 16.51 
+#64 16.51 For more on this, please refer to https://docs.gradle.org/8.12.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+#64 16.51 
+#64 16.51 BUILD SUCCESSFUL in 16s
+#64 16.51 12 actionable tasks: 12 executed
+#64 DONE 17.1s
+
+#65 [java-d-4 builder 3/6] COPY . .
+#65 CACHED
+
+#66 [java-d-4 builder 4/6] RUN apt-get update && apt-get install -y net-tools findutils
+#66 CACHED
+
+#67 [java-d-4 builder 5/6] RUN chmod +x gradlew
+#67 CACHED
+
+#68 [java-d-4 builder 6/6] RUN ./gradlew clean build --info --stacktrace
+#68 CACHED
+
+#69 [java-d-5 builder 3/6] COPY . .
+#69 CACHED
+
+#70 [java-d-5 builder 4/6] RUN apt-get update && apt-get install -y net-tools findutils
+#70 CACHED
+
+#71 [java-d-5 builder 6/6] RUN ./gradlew clean build --info --stacktrace
+#71 CACHED
+
+#72 [java-d-5 builder 5/6] RUN chmod +x gradlew
+#72 CACHED
+
+#73 [java-d-4 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar
+#73 ERROR: failed to calculate checksum of ref spz988c995q0cjz3t65pm2l78::2evc99nxo2b4qdy4xpnl5qen0: "/app/build/libs/swim.jar": not found
+
+#74 [java-d-5 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar
+#74 ERROR: failed to calculate checksum of ref spz988c995q0cjz3t65pm2l78::2evc99nxo2b4qdy4xpnl5qen0: "/app/build/libs/swim.jar": not found
+
+#75 [java-d-1 builder 5/6] RUN chmod +x gradlew
+#75 CACHED
+
+#76 [java-d-1 builder 6/6] RUN ./gradlew clean build --info --stacktrace
+#76 CACHED
+
+#77 [java-d-1 builder 3/6] COPY . .
+#77 CACHED
+
+#78 [java-d-1 builder 4/6] RUN apt-get update && apt-get install -y net-tools findutils
+#78 CACHED
+
+#79 [java-d-1 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar
+#79 ERROR: failed to calculate checksum of ref spz988c995q0cjz3t65pm2l78::2evc99nxo2b4qdy4xpnl5qen0: "/app/build/libs/swim.jar": not found
+
+#80 [java-d-6 builder 3/6] COPY . .
+#80 CACHED
+
+#81 [java-d-6 builder 5/6] RUN chmod +x gradlew
+#81 CACHED
+
+#82 [java-d-6 builder 6/6] RUN ./gradlew clean build --info --stacktrace
+#82 CACHED
+
+#83 [java-d-6 builder 4/6] RUN apt-get update && apt-get install -y net-tools findutils
+#83 CACHED
+
+#84 [java-d-6 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar
+#84 ERROR: failed to calculate checksum of ref spz988c995q0cjz3t65pm2l78::2evc99nxo2b4qdy4xpnl5qen0: "/app/build/libs/swim.jar": not found
+
+#85 [java-d-2 builder 6/6] RUN ./gradlew clean build --info --stacktrace
+#85 CACHED
+
+#86 [java-d-2 builder 4/6] RUN apt-get update && apt-get install -y net-tools findutils
+#86 CACHED
+
+#87 [java-d-2 builder 3/6] COPY . .
+#87 CACHED
+
+#88 [java-d-2 builder 5/6] RUN chmod +x gradlew
+#88 CACHED
+
+#89 [java-d-2 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar
+#89 CANCELED
+
+#90 [java-d-6 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar
+#90 ERROR: failed to calculate checksum of ref spz988c995q0cjz3t65pm2l78::2evc99nxo2b4qdy4xpnl5qen0: "/app/build/libs/swim.jar": not found
+------
+ > [java-d-4 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar:
+------
+------
+ > [java-d-6 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar:
+------
+------
+ > [java-d-5 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar:
+------
+------
+ > [java-d-1 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar:
+------
+------
+ > [java-d-6 stage-1 3/3] COPY --from=builder /app/build/libs/swim.jar ./swim.jar:
+------
+failed to solve: failed to compute cache key: failed to calculate checksum of ref spz988c995q0cjz3t65pm2l78::2evc99nxo2b4qdy4xpnl5qen0: "/app/build/libs/swim.jar": not found
