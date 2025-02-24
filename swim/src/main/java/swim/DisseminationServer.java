@@ -322,7 +322,8 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
                 membership.add(bootstrapNode);
                 membership.addAll(response.getMembershipListList());
                 membership.remove(nodeId);
-                System.err.println(membership);
+                System.out.println("Membership list recieved from Bootstrap Node: " + membership);
+                System.out.flush();
                 // Close the channel later in your actual use case when necessary
                 channel.shutdown();
             } catch (Exception e) {
