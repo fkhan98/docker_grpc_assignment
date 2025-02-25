@@ -130,7 +130,7 @@ python fd_node.py --port 50051 --membership 50052 50053 50054 50055
 python fd_node.py --port 50052 --membership 50051 50053 50054 50055
 ```
 
-In this setup, each node acts as both a client and a server, handling Ping and Indirect Ping Requests to and from other nodes. Upon receiving acknowledgments for each ping request, nodes update their Last Heard From timestamps for other nodes in the membership list. These timestamps are stored in a JSON file under the `\data` folder for each node.
+In this setup, each node acts as both a client and a server, handling Ping and Indirect Ping Requests to and from other nodes. Here the timeout and K values are `5` and `3` respectively. Upon receiving acknowledgments for each ping request, nodes update their Last Heard From timestamps for other nodes in the membership list. These timestamps are stored in a JSON file under the `\data` folder for each node.
 
 The files follow the naming convention: `nodeid_last_heard_from.json`
 <br>
