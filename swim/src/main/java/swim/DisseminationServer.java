@@ -16,10 +16,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Simple utility class to store host+port parsing results.
- */
-// CHANGED: New helper class
 class HostPort {
     String host;
     int port;
@@ -41,7 +37,6 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
         this.membershipList = new ArrayList<>(initialMembership);
     }
 
-    // CHANGED: Utility to parse strings like "java-d-2:60052" => HostPort("java-d-2", 60052)
     public static HostPort parseHostPort(String hostPortStr) {
         String[] parts = hostPortStr.split(":");
         if (parts.length != 2) {
@@ -130,7 +125,6 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
     private void notifyFdJoin(String newNodeId) {
         try {
-            // CHANGED: parse local node ID => "java-d-1:60051" => HostPort("java-d-1",60051)
             HostPort selfHp = parseHostPort(nodeId);
 
             // Convert "java-d-1" => "python-fd-1", and port => port - 10000
@@ -138,11 +132,11 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
             String fdHost = "python-fd-" + suffix;                     // e.g. "python-fd-1"
             int fdPort = selfHp.port - 10000;                          // e.g. 50051
 
-            // newNodeId might be "java-d-2:60052" => parse that too if you want to pass that logic
+ 
             System.out.println("Component Dissemination of Node " + nodeId +
                     " sending New Node Join Notification RPC to Failure Detector at " + fdHost + ":" + fdPort);
             System.out.flush();
-            // CHANGED: remove localhost
+
             ManagedChannel channel = ManagedChannelBuilder
                     .forAddress(fdHost, fdPort)
                     .usePlaintext()
@@ -181,11 +175,10 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
                     " sends RPC Join to Component Dissemination of Node " + targetNode);
             System.out.flush();
             try {
-                // CHANGED: parse "host:port"
                 HostPort hp = parseHostPort(targetNode);
 
                 ManagedChannel channel = ManagedChannelBuilder
-                        .forAddress(hp.host, hp.port) // CHANGED: remove localhost
+                        .forAddress(hp.host, hp.port)
                         .usePlaintext()
                         .build();
 
@@ -216,11 +209,10 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
                     " sends RPC NotifyFailure to Component Dissemination of Node " + targetNode);
             System.out.flush();
             try {
-                // CHANGED: parse "host:port"
                 HostPort hp = parseHostPort(targetNode);
 
                 ManagedChannel channel = ManagedChannelBuilder
-                        .forAddress(hp.host, hp.port) // CHANGED
+                        .forAddress(hp.host, hp.port)
                         .usePlaintext()
                         .build();
 
@@ -241,7 +233,6 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
     private void notifyFailureDetectors(String failedNodeId) {
         try {
-            // CHANGED: parse local node => "java-d-X:6005X"
             HostPort selfHp = parseHostPort(nodeId);
             String suffix = selfHp.host.substring("java-d-".length());
             String fdHost = "python-fd-" + suffix;
@@ -253,7 +244,7 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
             int failedfdPort = failedHp.port - 10000;
             String fdFailedNode = failedfdHost + ":" + failedfdPort;
 
-            // Possibly parse "failedNodeId" if you want to pass the exact string
+
             System.out.println("Component Dissemination of Node " + nodeId +
                     " sending NotifyFailure RPC to Failure Detector at " + fdHost + ":" + fdPort);
             System.out.flush();
@@ -292,7 +283,7 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
         }
 
         String[] initialMembers = {"java-d-1:60051", "java-d-2:60052", "java-d-3:60053", "java-d-4:60054", "java-d-5:60055"};
-        // CHANGED: We now expect something like "java-d-1:60051" for nodeId
+
         String nodeId = args[0];
 
         List<String> membership = new ArrayList<>();
@@ -324,7 +315,7 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
                 membership.remove(nodeId);
                 System.out.println("Membership list recieved from Bootstrap Node: " + membership);
                 System.out.flush();
-                // Close the channel later in your actual use case when necessary
+
                 channel.shutdown();
             } catch (Exception e) {
                 System.err.println("Error joining the cluster: " + e.getMessage());
@@ -334,7 +325,7 @@ public class DisseminationServer extends DisseminationGrpc.DisseminationImplBase
 
         DisseminationServer service = new DisseminationServer(nodeId, membership);
 
-        // CHANGED: parse the host:port from nodeId to run the server
+
         String[] hostPortParts = nodeId.split(":");
         String host = hostPortParts[0];
         int port = Integer.parseInt(hostPortParts[1]);

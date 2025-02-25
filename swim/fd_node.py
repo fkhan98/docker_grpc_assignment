@@ -35,7 +35,6 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
               f"runs RPC IndirectPing to Node {request.target_id} called by "
               f"Component FailureDetector of Node {request.sender_id}")
         try:
-            # CHANGED: remove "localhost:"
             with grpc.insecure_channel(request.target_id) as channel:
                 stub = swim_pb2_grpc.FailureDetectorStub(channel)
                 response = stub.Ping(swim_pb2.PingRequest(sender_id=self.node_id))
@@ -75,7 +74,6 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
 
             try:
                 time.sleep(60)
-                # CHANGED: remove "localhost:"
                 with grpc.insecure_channel(target) as channel:
                     stub = swim_pb2_grpc.FailureDetectorStub(channel)
                     response = stub.Ping(swim_pb2.PingRequest(sender_id=self.node_id), timeout=5)
@@ -122,23 +120,20 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
     def notify_failure_to_dissemination(self, failed_node_id):
         """Notifies the Java Dissemination service about the failed node."""
         try:
-            # CHANGED: parse current node to figure out the Java Dissemination container
             fd_host, fd_port_str = self.node_id.split(":")   # e.g. "python-fd-1", "50051"
             fd_port = int(fd_port_str)
             suffix = fd_host.split("-")[-1]                  # "1" if "python-fd-1"
             dissemination_host = f"java-d-{suffix}"          # "java-d-1"
             dissemination_port = fd_port + 10000             # 50051 -> 60051
 
-            # If the failed node is also "python-fd-2:50052", 
-            # you might want to transform it to "java-d-2:60052" 
-            # so the Java side recognizes it.
+
             mapped_failed_node = self.map_fd_to_dissemination(failed_node_id)
 
             print(f"Component FailureDetector of Node {self.node_id} notifies "
                   f"Component Dissemination at {dissemination_host}:{dissemination_port} "
                   f"about failure of Node {failed_node_id}")
 
-            # CHANGED: remove "localhost:"
+
             with grpc.insecure_channel(f"{dissemination_host}:{dissemination_port}") as channel:
                 stub = swim_pb2_grpc.DisseminationStub(channel)
 
@@ -169,15 +164,11 @@ class FailureDetectorServicer(swim_pb2_grpc.FailureDetectorServicer):
 
 def serve(port, membership):
     """Start the Failure Detector service on the given port, with an initial membership list."""
-    print(port, membership)
-    print('----------------')
-    # Ensure port is in "host:port" format
     if ":" in port:
         host, port_str = port.split(":")
     else:
         host, port_str = "0.0.0.0", port  # Default to "0.0.0.0" if only port is given
-    print(host, port_str)
-    print('----------------')
+
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     # fd_servicer = FailureDetectorServicer(node_id=port_str, membership_list=membership)
     fd_servicer = FailureDetectorServicer(node_id=port, membership_list=membership)

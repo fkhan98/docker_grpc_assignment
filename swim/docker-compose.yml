@@ -181,7 +181,7 @@ services:
     ]
 
 
-  # (Optional) Example extra node:
+  # Example new node join:
   java-d-6:
     build:
       context: .

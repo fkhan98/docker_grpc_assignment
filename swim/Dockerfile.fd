@@ -1,19 +1,18 @@
-# You can pick another Python base, e.g. python:3.9-slim or python:3.11 etc.
 FROM python:3.9-slim
 
-# Create a directory for your app
+
 WORKDIR /app
 
 # Copy requirements and install
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy in your application code
+
 COPY fd_node.py .
 COPY swim.proto .
 
-# If needed, generate the gRPC Python code from swim.proto inside the image
+
 RUN python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. swim.proto
 
-# By default, run the FD service. You can override the command in docker-compose.
+
 CMD ["python", "fd_node.py", "--port", "50051"]
